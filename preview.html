@@ -1,0 +1,1318 @@
+<title>True You Communities — mobile preview</title>
+
+<style>
+/* ============================================================
+   True You Communities — single-file preview build.
+   Same design system as the multi-page site; photos are drawn
+   as vector scenes so the page works with no network at all.
+   ============================================================ */
+
+:root {
+  --moss: #1f6f52;
+  --moss-600: #17573f;
+  --clay: #d8734a;
+
+  --bg: #f6f2ec;
+  --surface: #ffffff;
+  --surface-2: #fbf9f5;
+  --text: #10231c;
+  --text-muted: #67736d;
+  --border: #e4ded5;
+  --accent: var(--moss);
+  --accent-soft: #e4f2ec;
+  --on-accent: #ffffff;
+  --clay-soft: #fbe9e1;
+  --clay-ink: #a8481f;
+  --warn-soft: #fff3d6;
+  --warn-ink: #8a6100;
+  --shadow-sm: 0 1px 2px rgba(16,35,28,.06), 0 4px 12px rgba(16,35,28,.05);
+  --shadow-lg: 0 20px 48px -20px rgba(16,35,28,.32);
+
+  /* illustration palette */
+  --sky: #dbe7e0;
+  --sun: #f0cba8;
+  --mass: #ece4d8;
+  --mass-2: #ddd2c2;
+  --roof: #2c4d40;
+  --glass: #b8d3c8;
+  --door: #1f6f52;
+  --grass: #cbd9c9;
+  --grass-2: #b3c8b0;
+  --trunk: #8a7458;
+  --wall: #efe8dd;
+  --floor: #d9cbb6;
+  --soft: #f7f2ea;
+
+  --r: 16px;
+  --r-lg: 22px;
+  --pad: 20px;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --display: Georgia, "Iowan Old Style", "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c1512;
+    --surface: #121e1a;
+    --surface-2: #16241f;
+    --text: #eaf2ee;
+    --text-muted: #9dada4;
+    --border: #22332c;
+    --accent: #4ecb98;
+    --accent-soft: #172c25;
+    --on-accent: #04170f;
+    --clay-soft: #33201a;
+    --clay-ink: #e79372;
+    --warn-soft: #2e250e;
+    --warn-ink: #e5be5f;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.3);
+    --shadow-lg: 0 20px 48px -20px rgba(0,0,0,.8);
+
+    --sky: #16302a;
+    --sun: #3d5a48;
+    --mass: #1d2f28;
+    --mass-2: #16241f;
+    --roof: #0f1f1a;
+    --glass: #2f6b56;
+    --door: #4ecb98;
+    --grass: #17281f;
+    --grass-2: #12201a;
+    --trunk: #3b332a;
+    --wall: #182722;
+    --floor: #21332b;
+    --soft: #17241f;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0c1512;
+  --surface: #121e1a;
+  --surface-2: #16241f;
+  --text: #eaf2ee;
+  --text-muted: #9dada4;
+  --border: #22332c;
+  --accent: #4ecb98;
+  --accent-soft: #172c25;
+  --on-accent: #04170f;
+  --clay-soft: #33201a;
+  --clay-ink: #e79372;
+  --warn-soft: #2e250e;
+  --warn-ink: #e5be5f;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.3);
+  --shadow-lg: 0 20px 48px -20px rgba(0,0,0,.8);
+  --sky: #16302a; --sun: #3d5a48; --mass: #1d2f28; --mass-2: #16241f;
+  --roof: #0f1f1a; --glass: #2f6b56; --door: #4ecb98; --grass: #17281f;
+  --grass-2: #12201a; --trunk: #3b332a; --wall: #182722; --floor: #21332b; --soft: #17241f;
+}
+
+:root[data-theme="light"] {
+  --bg: #f6f2ec;
+  --surface: #ffffff;
+  --surface-2: #fbf9f5;
+  --text: #10231c;
+  --text-muted: #67736d;
+  --border: #e4ded5;
+  --accent: var(--moss);
+  --accent-soft: #e4f2ec;
+  --on-accent: #ffffff;
+  --clay-soft: #fbe9e1;
+  --clay-ink: #a8481f;
+  --warn-soft: #fff3d6;
+  --warn-ink: #8a6100;
+  --shadow-sm: 0 1px 2px rgba(16,35,28,.06), 0 4px 12px rgba(16,35,28,.05);
+  --shadow-lg: 0 20px 48px -20px rgba(16,35,28,.32);
+  --sky: #dbe7e0; --sun: #f0cba8; --mass: #ece4d8; --mass-2: #ddd2c2;
+  --roof: #2c4d40; --glass: #b8d3c8; --door: #1f6f52; --grass: #cbd9c9;
+  --grass-2: #b3c8b0; --trunk: #8a7458; --wall: #efe8dd; --floor: #d9cbb6; --soft: #f7f2ea;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.58;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3 { margin: 0 0 .45em; line-height: 1.14; letter-spacing: -.02em; font-weight: 640; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 8.5vw, 3.4rem); }
+h2 { font-size: clamp(1.5rem, 5.6vw, 2.3rem); }
+h3 { font-size: 1.08rem; }
+p { margin: 0 0 1em; }
+.serif { font-family: var(--display); font-style: italic; font-weight: 400; }
+
+.wrap { width: 100%; max-width: 1120px; margin-inline: auto; padding-inline: var(--pad); }
+@media (min-width: 760px) { :root { --pad: 40px; } }
+
+.section { padding-block: clamp(40px, 9vw, 84px); }
+.section--alt { background: var(--surface-2); border-block: 1px solid var(--border); }
+.grid { display: grid; gap: 18px; }
+@media (min-width: 700px) {
+  .g-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .g-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .g-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .split { display: grid; grid-template-columns: 1.02fr .98fr; gap: 44px; align-items: center; }
+}
+@media (min-width: 1000px) { .g-4 { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+.split { display: grid; gap: 28px; }
+
+/* ---------- header ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.topbar__in { display: flex; align-items: center; gap: 12px; min-height: 60px; }
+.brand { display: flex; align-items: center; gap: 9px; text-decoration: none; color: inherit; font-weight: 700; }
+.brand__mark {
+  width: 30px; height: 30px; border-radius: 9px; flex: none;
+  background: linear-gradient(150deg, var(--accent), #7fd8b0);
+  color: #06231a; display: grid; place-items: center; font-size: 14px; font-weight: 800;
+}
+.brand__name { font-size: .98rem; line-height: 1.05; letter-spacing: -.02em; }
+.brand__name small { display: block; font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-muted); font-weight: 600; }
+
+.menu-btn {
+  margin-left: auto; width: 40px; height: 40px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text);
+  font-size: 15px; cursor: pointer;
+}
+.nav {
+  display: none; flex-direction: column; gap: 2px;
+  padding: 8px var(--pad) 18px; border-bottom: 1px solid var(--border);
+  background: var(--surface); box-shadow: var(--shadow-lg);
+}
+.nav.is-open { display: flex; }
+.nav a {
+  text-decoration: none; color: var(--text-muted); font-weight: 550;
+  padding: 12px 14px; border-radius: 12px;
+}
+.nav a[aria-current="page"] { color: var(--text); background: var(--accent-soft); }
+@media (min-width: 860px) {
+  .menu-btn { display: none; }
+  .nav {
+    display: flex; flex-direction: row; margin-left: auto; padding: 0;
+    border: 0; box-shadow: none; background: transparent; gap: 2px;
+  }
+  .nav a { padding: 8px 13px; border-radius: 999px; font-size: .93rem; }
+}
+
+/* ---------- buttons + chips ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 13px 20px; border-radius: 999px; border: 1px solid transparent;
+  font: inherit; font-size: .94rem; font-weight: 620; text-decoration: none; cursor: pointer;
+  transition: background .16s, color .16s, border-color .16s, transform .16s;
+}
+.btn:active { transform: scale(.98); }
+.btn--primary { background: var(--accent); color: var(--on-accent); box-shadow: var(--shadow-sm); }
+.btn--ghost { background: var(--surface); border-color: var(--border); color: var(--text); }
+.btn--sm { padding: 9px 15px; font-size: .85rem; }
+.btn--block { width: 100%; }
+.btn:focus-visible, a:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+
+.chip {
+  display: inline-flex; align-items: center; padding: 5px 11px; border-radius: 999px;
+  font-size: .76rem; font-weight: 620; background: var(--accent-soft); color: var(--accent);
+  border: 1px solid transparent;
+}
+.chip--muted { background: transparent; border-color: var(--border); color: var(--text-muted); }
+.chip--warn { background: var(--warn-soft); color: var(--warn-ink); }
+.chip--clay { background: var(--clay-soft); color: var(--clay-ink); }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;
+  font-size: .71rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--accent);
+}
+.eyebrow::before { content: ""; width: 20px; height: 2px; border-radius: 2px; background: var(--accent); }
+
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.between { justify-content: space-between; }
+.muted { color: var(--text-muted); }
+.mt-1 { margin-top: 10px; } .mt-2 { margin-top: 20px; } .mt-3 { margin-top: 30px; }
+.mb-0 { margin-bottom: 0; }
+.lede { color: var(--text-muted); font-size: 1.04rem; max-width: 58ch; }
+
+/* ---------- illustration frames ---------- */
+.ph { position: relative; overflow: hidden; background: var(--sky); border-radius: var(--r); }
+.ph svg { display: block; width: 100%; height: 100%; }
+.ph--16x9 { aspect-ratio: 16/9; }
+.ph--4x3 { aspect-ratio: 4/3; }
+.ph--1x1 { aspect-ratio: 1/1; }
+.ph__cap {
+  position: absolute; left: 10px; bottom: 10px;
+  font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
+  color: var(--text); background: color-mix(in srgb, var(--surface) 80%, transparent);
+  padding: 4px 9px; border-radius: 999px; backdrop-filter: blur(4px);
+}
+
+/* ---------- cards ---------- */
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+  overflow: hidden; display: flex; flex-direction: column;
+}
+.card__media { position: relative; }
+.card__media .ph { border-radius: 0; }
+.card__ribbon { position: absolute; top: 12px; left: 12px; z-index: 2; }
+.card__body { padding: 18px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+.card__title { margin: 0; font-size: 1.06rem; font-weight: 640; }
+.card__meta { margin: 0; font-size: .88rem; color: var(--text-muted); }
+.card__foot {
+  margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.price { font-size: 1.16rem; font-weight: 700; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.price small { font-size: .76rem; font-weight: 500; color: var(--text-muted); }
+.specs { display: flex; flex-wrap: wrap; gap: 12px; font-size: .86rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.tagrow { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.feature {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg);
+  padding: 22px; display: flex; flex-direction: column; gap: 8px;
+}
+.feature__icon { width: 40px; height: 40px; border-radius: 12px; background: var(--accent-soft); display: grid; place-items: center; margin-bottom: 4px; }
+.feature__icon svg { width: 22px; height: 22px; stroke: var(--accent); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.feature p { margin: 0; font-size: .93rem; color: var(--text-muted); }
+.feature h3 { margin: 0; }
+.feature a { color: var(--accent); font-weight: 620; font-size: .89rem; text-decoration: none; margin-top: 4px; }
+
+/* ---------- stats ---------- */
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--border); }
+@media (min-width: 700px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.stat b { display: block; font-size: 1.7rem; font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.stat span { font-size: .79rem; color: var(--text-muted); line-height: 1.3; display: block; }
+
+/* ---------- steps ---------- */
+.steps { display: grid; }
+.step { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 18px 0; border-top: 1px solid var(--border); }
+.step b { color: var(--accent); font-size: .9rem; font-variant-numeric: tabular-nums; }
+.step h3 { margin: 0 0 3px; font-size: 1.02rem; }
+.step p { margin: 0; font-size: .92rem; color: var(--text-muted); }
+
+/* ---------- checklist ---------- */
+.checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+.checklist li { display: grid; grid-template-columns: 20px 1fr; gap: 10px; font-size: .92rem; }
+.checklist li::before {
+  content: "✓"; width: 20px; height: 20px; border-radius: 999px; margin-top: 2px;
+  background: var(--accent-soft); color: var(--accent); font-size: .74rem; font-weight: 800;
+  display: grid; place-items: center;
+}
+
+/* ---------- filters ---------- */
+.filters {
+  display: grid; gap: 12px; padding: 16px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--r); box-shadow: var(--shadow-sm);
+}
+@media (min-width: 620px) { .filters { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 900px) { .filters { grid-template-columns: repeat(5, 1fr); align-items: end; } }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--text-muted); }
+select, input, textarea {
+  font: inherit; font-size: 16px; padding: 11px 12px; border-radius: 11px;
+  border: 1px solid var(--border); background: var(--bg); color: var(--text); width: 100%;
+}
+.results { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; margin: 20px 0 16px; }
+
+/* ---------- table ---------- */
+.tscroll { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--r); background: var(--surface); -webkit-overflow-scrolling: touch; }
+table { width: 100%; border-collapse: collapse; min-width: 520px; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); font-size: .89rem; }
+th { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); background: var(--surface-2); }
+tbody tr:last-child td { border-bottom: 0; }
+.mini { min-width: 0; }
+.mini td { padding: 10px 12px; font-variant-numeric: tabular-nums; }
+.num { text-align: right; }
+
+/* ---------- misc ---------- */
+.note { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 13px 16px; border-radius: 0 11px 11px 0; font-size: .9rem; }
+.banner {
+  border-radius: var(--r-lg); padding: 28px 24px; color: #eef7f2;
+  background: linear-gradient(135deg, #10231c 0%, #1d3a30 55%, #17573f 100%);
+  box-shadow: var(--shadow-lg);
+}
+.banner h2 { color: #fff; }
+.banner p { color: #c8ddd3; }
+.demo-flag { display: inline-flex; align-items: center; gap: 7px; font-size: .74rem; font-weight: 620; background: var(--clay-soft); color: var(--clay-ink); padding: 6px 11px; border-radius: 999px; }
+.empty { padding: 40px 20px; text-align: center; color: var(--text-muted); border: 1px dashed var(--border); border-radius: var(--r); }
+
+/* ---------- sheet (unit detail) ---------- */
+.sheet { position: fixed; inset: 0; z-index: 90; display: none; }
+.sheet.is-open { display: block; }
+.sheet__scrim { position: absolute; inset: 0; background: rgba(8,20,16,.6); backdrop-filter: blur(3px); }
+.sheet__panel {
+  position: absolute; left: 0; right: 0; bottom: 0; max-height: 92vh; overflow: auto;
+  background: var(--surface); border-radius: 22px 22px 0 0; box-shadow: var(--shadow-lg);
+  animation: rise .26s cubic-bezier(.2,.8,.3,1);
+  padding-bottom: max(24px, env(safe-area-inset-bottom));
+}
+@media (min-width: 760px) {
+  .sheet__panel { left: 50%; right: auto; bottom: auto; top: 50%; transform: translate(-50%,-50%); width: min(700px, 92vw); border-radius: 22px; }
+}
+@keyframes rise { from { transform: translateY(24px); opacity: 0; } }
+@media (min-width: 760px) { @keyframes rise { from { transform: translate(-50%,-46%); opacity: 0; } } }
+.sheet__close {
+  position: absolute; top: 12px; right: 12px; z-index: 3; width: 36px; height: 36px;
+  border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text); cursor: pointer; font-size: 15px;
+}
+.sheet__in { padding: 20px; display: grid; gap: 12px; }
+.sheet .ph { border-radius: 22px 22px 0 0; }
+@media (min-width: 760px) { .sheet .ph { border-radius: 22px 22px 0 0; } }
+
+/* ---------- toast ---------- */
+.toast {
+  position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 16px);
+  background: #10231c; color: #fff; padding: 12px 18px; border-radius: 999px;
+  font-size: .88rem; box-shadow: var(--shadow-lg); opacity: 0; pointer-events: none;
+  transition: opacity .24s, transform .24s; z-index: 120; max-width: 88vw; text-align: center;
+}
+.toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- footer ---------- */
+.foot { background: #10231c; color: #c5d6ce; padding: 40px 0 24px; }
+.foot a { color: #c5d6ce; text-decoration: none; font-size: .9rem; }
+.foot h4 { color: #fff; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 12px; }
+.foot__grid { display: grid; gap: 26px; }
+@media (min-width: 700px) { .foot__grid { grid-template-columns: 1.4fr repeat(3, 1fr); } }
+.foot__links { display: grid; gap: 8px; }
+.foot__bottom {
+  margin-top: 30px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12);
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; font-size: .78rem; color: #8ba398;
+}
+
+/* ---------- pages ---------- */
+.page { display: none; }
+.page.is-active { display: block; }
+.page-head { padding-block: 32px 12px; }
+
+/* ---------- reveal ---------- */
+.rv { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+</style>
+
+<header class="topbar">
+  <div class="wrap topbar__in">
+    <a class="brand" href="#home">
+      <span class="brand__mark">T</span>
+      <span class="brand__name">True You<small>Communities</small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-label="Menu">☰</button>
+    <nav class="nav" id="nav">
+      <a href="#home">Home</a>
+      <a href="#rent">Rent a unit</a>
+      <a href="#buy">Buy a triplex</a>
+      <a href="#community">Community</a>
+      <a href="#safety">Safety kits</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===================== HOME ===================== -->
+  <section class="page is-active" id="page-home">
+    <div class="wrap" style="padding-block: 30px 10px">
+      <span class="eyebrow">Land · Triplexes · Neighbors</span>
+      <h1>We buy the land, build the triplex, and stay for the <span class="serif">neighborhood</span>.</h1>
+      <p class="lede">
+        Three homes on one lot, each with its own door. Rent a unit, buy the whole building, or just
+        come to the activity center down the street. Every community gets a place to gather and a
+        safety kit in every kitchen.
+      </p>
+      <div class="row mt-2">
+        <a class="btn btn--primary" href="#rent">Browse available units</a>
+        <a class="btn btn--ghost" href="#buy">Buy a triplex →</a>
+      </div>
+      <div class="mt-3 rv" data-scene="triplex" data-cap="Cedar Row · exterior" data-ratio="4x3"></div>
+      <div class="stats">
+        <div class="stat"><b>3</b><span>Communities in development</span></div>
+        <div class="stat"><b>27</b><span>Units planned by 2027</span></div>
+        <div class="stat"><b>4</b><span>Activity centers</span></div>
+        <div class="stat"><b>100%</b><span>Units with a safety kit</span></div>
+      </div>
+    </div>
+
+    <div class="section section--alt">
+      <div class="wrap">
+        <div class="rv">
+          <span class="eyebrow">What we do</span>
+          <h2>Four things, on the same piece of land.</h2>
+          <p class="muted">Most builders stop at the certificate of occupancy. We're building the part that comes after.</p>
+        </div>
+        <div class="grid g-4 mt-3" id="pillars"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="wrap split">
+        <div class="rv">
+          <span class="eyebrow">The model</span>
+          <h2>Buy dirt. Build three doors. Keep the keys nearby.</h2>
+          <p class="muted">
+            We look for infill parcels inside existing towns — already served by water, sewer, and a
+            school bus route. The density pays for the parts a single-family lot could never afford:
+            the commons, the garden block, the cache of supplies for when the storm comes.
+          </p>
+          <div class="steps mt-2" id="modelSteps"></div>
+        </div>
+        <div class="rv" data-scene="land" data-cap="Land acquisition" data-ratio="4x3"></div>
+      </div>
+    </div>
+
+    <div class="section section--alt">
+      <div class="wrap">
+        <div class="row between rv">
+          <div><span class="eyebrow">Now leasing</span><h2 class="mb-0">Open units this month</h2></div>
+          <a class="btn btn--ghost btn--sm" href="#rent">All units</a>
+        </div>
+        <div class="grid g-3 mt-3" id="homeUnits"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="wrap">
+        <div class="row between rv">
+          <div><span class="eyebrow">For sale</span><h2 class="mb-0">Triplexes on the market</h2></div>
+          <a class="btn btn--ghost btn--sm" href="#buy">All buildings</a>
+        </div>
+        <div class="grid g-2 mt-3" id="homeTriplexes"></div>
+      </div>
+    </div>
+
+    <div class="section section--alt">
+      <div class="wrap">
+        <div class="row between rv">
+          <div><span class="eyebrow">Places to congregate</span><h2 class="mb-0">The activity centers</h2></div>
+          <a class="btn btn--ghost btn--sm" href="#community">Explore</a>
+        </div>
+        <div class="grid g-3 mt-3" id="homeCenters"></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="wrap">
+        <div class="rv">
+          <span class="eyebrow">Safety kits</span>
+          <h2>Every unit gets one. Every community gets a cache.</h2>
+          <p class="muted">Preparedness shouldn't be a thing you get around to. It ships with the keys.</p>
+        </div>
+        <div class="grid g-3 mt-3" id="homeKits"></div>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding-bottom: 60px">
+      <div class="banner rv">
+        <h2>Want in early?</h2>
+        <p>Tell us whether you're looking to rent, to buy, or to help run a community space — we'll put you on the list for the next release.</p>
+        <a class="btn btn--primary" href="#contact">Get on the list</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RENT ===================== -->
+  <section class="page" id="page-rent">
+    <div class="wrap page-head">
+      <span class="eyebrow">Rent by the unit</span>
+      <h1>One door, one lease, one neighbor on each side.</h1>
+      <p class="lede">
+        Every building is three separate homes. You lease yours — not a share of anything, not a room.
+        Management is in-house, and the safety kit is mounted by the door when you get the keys.
+      </p>
+      <div class="row mt-2">
+        <span class="chip">In-house management</span>
+        <span class="chip">Pet friendly</span>
+        <span class="chip">Safety kit included</span>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding-bottom: 50px">
+      <div class="filters">
+        <div class="field"><label for="fCommunity">Community</label><select id="fCommunity"><option value="all">All communities</option></select></div>
+        <div class="field"><label for="fBeds">Bedrooms</label>
+          <select id="fBeds"><option value="all">Any</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option></select>
+        </div>
+        <div class="field"><label for="fPrice">Max rent</label>
+          <select id="fPrice"><option value="all">No max</option><option value="1500">$1,500</option><option value="1800">$1,800</option><option value="2100">$2,100</option><option value="2400">$2,400</option></select>
+        </div>
+        <div class="field"><label for="fStatus">Availability</label>
+          <select id="fStatus"><option value="all">Everything</option><option value="open">Open + pre-leasing</option><option value="now">Move-in ready</option></select>
+        </div>
+        <div class="field"><label for="fSort">Sort by</label>
+          <select id="fSort"><option value="price-asc">Rent, low to high</option><option value="price-desc">Rent, high to low</option><option value="size-desc">Square feet</option><option value="beds-desc">Bedrooms</option></select>
+        </div>
+      </div>
+      <div class="results">
+        <strong id="count">—</strong>
+        <span class="demo-flag">◆ Sample listings</span>
+      </div>
+      <div class="grid g-3" id="unitGrid"></div>
+
+      <div class="mt-3">
+        <h2 class="mt-3">How leasing works</h2>
+        <div class="steps" id="leaseSteps"></div>
+        <div class="note mt-2">This prototype doesn't process applications — the buttons are for layout only.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BUY ===================== -->
+  <section class="page" id="page-buy">
+    <div class="wrap page-head">
+      <span class="eyebrow">For sale</span>
+      <h1>Buy one building. Get three <span class="serif">incomes</span>.</h1>
+      <p class="lede">
+        A triplex is the smallest building that pays for itself. Live in one unit and rent the other
+        two, or hold all three. We hand over the keys, the leases, the warranties, and — if you want
+        it — the management.
+      </p>
+      <div class="row mt-2">
+        <span class="chip">Tenants in place</span>
+        <span class="chip">Separately metered</span>
+        <span class="chip">10-yr structural warranty</span>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding-bottom: 40px">
+      <div class="results">
+        <strong>Current release</strong>
+        <span class="demo-flag">◆ Illustrative pro-formas, not offers</span>
+      </div>
+      <div class="grid g-2" id="triplexGrid"></div>
+    </div>
+
+    <div class="section section--alt">
+      <div class="wrap">
+        <div class="rv">
+          <span class="eyebrow">What's included</span>
+          <h2>The handoff, in writing.</h2>
+        </div>
+        <ul class="checklist mt-2 rv">
+          <li>Signed leases and tenant ledgers transferred at close</li>
+          <li>Separate power, water, and internet meters per unit</li>
+          <li>Ten-year structural warranty, two-year systems warranty</li>
+          <li>Full safety kit mounted in each of the three units</li>
+          <li>Activity center access for every tenant, dues included</li>
+          <li>Optional in-house management at a flat monthly rate</li>
+        </ul>
+        <h2 class="mt-3">Reservation to keys</h2>
+        <div class="steps" id="buySteps"></div>
+        <div class="note mt-2">Prototype content. Real listings and financial disclosures would be reviewed by counsel first.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMMUNITY ===================== -->
+  <section class="page" id="page-community">
+    <div class="wrap page-head">
+      <span class="eyebrow">Places to congregate</span>
+      <h1>A neighborhood needs somewhere to <span class="serif">be</span>.</h1>
+      <p class="lede">
+        Housing alone doesn't make neighbors. So every community includes a real building — heated,
+        cooled, insured, with a kitchen and a bathroom and chairs — that residents can walk to and use
+        without asking permission or paying a rental fee.
+      </p>
+    </div>
+    <div class="wrap">
+      <div class="rv" data-scene="commons" data-cap="Movie night on the green" data-ratio="16x9"></div>
+      <h2 class="mt-3">Four centers, three communities</h2>
+      <div class="grid g-2" id="centerGrid"></div>
+    </div>
+
+    <div class="section">
+      <div class="wrap">
+        <div class="row between rv">
+          <div><span class="eyebrow">Calendar</span><h2 class="mb-0">What's happening next</h2></div>
+        </div>
+        <div class="mt-2 rv" id="eventList"></div>
+      </div>
+    </div>
+
+    <div class="section section--alt">
+      <div class="wrap split">
+        <div class="rv">
+          <span class="eyebrow">How it runs</span>
+          <h2>Owned by us. Run by the block.</h2>
+          <p class="muted">
+            We build the center, insure it, and cover the utilities out of operating income — no
+            per-resident amenity fee. What happens inside is up to a resident council that gets the
+            keys, the booking calendar, and a small annual budget.
+          </p>
+          <ul class="checklist mt-2">
+            <li>Free to book for any resident or owner in the community</li>
+            <li>Resident council of five, elected annually, sets programming</li>
+            <li>Small annual budget for supplies, coffee, and guest instructors</li>
+            <li>Doubles as the cooling and charging site when the power goes out</li>
+            <li>Neighbors outside the community welcome as guests</li>
+          </ul>
+        </div>
+        <div class="rv" data-scene="garden" data-cap="Garden block" data-ratio="4x3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SAFETY ===================== -->
+  <section class="page" id="page-safety">
+    <div class="wrap page-head">
+      <span class="eyebrow">Safety kits</span>
+      <h1>Preparedness that ships with the <span class="serif">keys</span>.</h1>
+      <p class="lede">
+        Nobody assembles an emergency kit on a normal Tuesday. So we assemble it for you: mounted by
+        the door before move-in, restocked once a year, and backed by a shared cache at the activity
+        center for the days when a household kit isn't enough.
+      </p>
+    </div>
+    <div class="wrap">
+      <div class="grid g-3" id="kitGrid"></div>
+    </div>
+
+    <div class="section">
+      <div class="wrap">
+        <div class="rv">
+          <span class="eyebrow">Reference</span>
+          <h2>What's in each tier.</h2>
+          <p class="muted">Printed on a card inside every kit, and taped to the inside of the cache door.</p>
+        </div>
+        <div class="tscroll mt-2 rv">
+          <table>
+            <thead><tr><th>Item</th><th>Unit kit</th><th>Storm kit</th><th>Block cache</th></tr></thead>
+            <tbody id="kitTable"></tbody>
+          </table>
+        </div>
+        <p class="muted mt-2" style="font-size:.86rem">
+          Sample contents for this prototype. A real program would be specified with the local fire
+          marshal and checked against county emergency-management guidance.
+        </p>
+      </div>
+    </div>
+
+    <div class="section section--alt">
+      <div class="wrap split">
+        <div class="rv">
+          <span class="eyebrow">Training</span>
+          <h2>A kit is only as good as the hands nearby.</h2>
+          <p class="muted">Twice a year we run free training at each activity center — residents, owners, and anyone on the surrounding blocks.</p>
+          <div class="steps mt-2" id="trainSteps"></div>
+        </div>
+        <div class="rv" data-scene="kit" data-cap="Block cache" data-ratio="4x3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="page" id="page-contact">
+    <div class="wrap page-head">
+      <span class="eyebrow">Get in touch</span>
+      <h1>Tell us what you're after.</h1>
+      <p class="lede">One form, four reasons to use it. We read everything and answer within two business days.</p>
+    </div>
+    <div class="wrap split" style="padding-bottom: 60px; align-items: start">
+      <form class="card" id="contactForm" style="padding:20px; gap:14px">
+        <h2 style="font-size:1.35rem;margin:0">Start a conversation</h2>
+        <p class="muted" style="font-size:.9rem;margin:0">Nothing here is stored — this is a front-end prototype.</p>
+        <div class="field"><label for="cName">Name</label><input id="cName" type="text" placeholder="Jordan Rivera" required></div>
+        <div class="field"><label for="cEmail">Email</label><input id="cEmail" type="email" placeholder="you@email.com" required></div>
+        <div class="field"><label for="cReason">I'm interested in</label>
+          <select id="cReason">
+            <option>Renting a unit</option><option>Buying a triplex</option>
+            <option>Using or running an activity center</option><option>Ordering a safety kit</option>
+            <option>Selling land to you</option><option>Something else</option>
+          </select>
+        </div>
+        <div class="field"><label for="cWhere">Area</label>
+          <select id="cWhere"><option>Lakeland, FL</option><option>Ocala, FL</option><option>Savannah, GA</option><option>Somewhere else</option></select>
+        </div>
+        <div class="field"><label for="cMsg">Anything else</label>
+          <textarea id="cMsg" rows="4" placeholder="Bedrooms you need, land you're sitting on, a class you'd teach…"></textarea>
+        </div>
+        <button class="btn btn--primary btn--block" type="submit">Send it</button>
+      </form>
+      <div>
+        <div class="rv" data-scene="build" data-cap="Under construction" data-ratio="4x3"></div>
+        <h2 class="mt-3">Four ways this usually starts</h2>
+        <div class="steps" id="contactSteps"></div>
+        <div class="note mt-2">
+          <strong>Prototype notice.</strong> Forms don't submit, listings are sample content, and the
+          financial figures shown are illustrative — not offers, projections, or advice.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="brand" href="#home" style="color:#fff">
+          <span class="brand__mark">T</span>
+          <span class="brand__name">True You<small style="color:#8ba398">Communities</small></span>
+        </a>
+        <p style="color:#8ba398;font-size:.9rem;margin-top:12px;max-width:34ch">
+          Land, triplexes, and the parts of a neighborhood that don't fit in a floor plan.
+        </p>
+      </div>
+      <div><h4>Live here</h4><div class="foot__links"><a href="#rent">Available units</a><a href="#contact">Join the waitlist</a></div></div>
+      <div><h4>Own here</h4><div class="foot__links"><a href="#buy">Triplexes for sale</a><a href="#contact">Talk to us</a></div></div>
+      <div><h4>Community</h4><div class="foot__links"><a href="#community">Activity centers</a><a href="#safety">Safety kits</a></div></div>
+    </div>
+    <div class="foot__bottom">
+      <span>© 2026 True You Communities · Prototype</span>
+      <span class="demo-flag">◆ Demo — sample content, no backend</span>
+    </div>
+  </div>
+</footer>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Unit detail">
+  <div class="sheet__scrim" data-close></div>
+  <div class="sheet__panel">
+    <button class="sheet__close" data-close aria-label="Close">✕</button>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ============================================================
+   Illustrated scenes — drawn instead of photographed so the
+   preview needs no network. Colors come from theme tokens.
+   ============================================================ */
+const svg = inner =>
+  '<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' + inner + '</svg>';
+
+const tree = (x, y, s) =>
+  `<rect x="${x - 2 * s}" y="${y - 16 * s}" width="${4 * s}" height="${18 * s}" fill="var(--trunk)"/>
+   <circle cx="${x}" cy="${y - 26 * s}" r="${15 * s}" fill="var(--grass-2)"/>
+   <circle cx="${x - 9 * s}" cy="${y - 18 * s}" r="${10 * s}" fill="var(--grass-2)"/>
+   <circle cx="${x + 9 * s}" cy="${y - 19 * s}" r="${11 * s}" fill="var(--grass-2)"/>`;
+
+const person = (x, y, s) =>
+  `<circle cx="${x}" cy="${y - 15 * s}" r="${4.4 * s}" fill="var(--roof)"/>
+   <path d="M${x - 5 * s} ${y} v${-8 * s} a${5 * s} ${5 * s} 0 0 1 ${10 * s} 0 V${y} z" fill="var(--roof)"/>`;
+
+const SCENES = {
+  /* three-bay building: one roof, three doors */
+  triplex: () => svg(`
+    <rect width="400" height="300" fill="var(--sky)"/>
+    <circle cx="330" cy="62" r="30" fill="var(--sun)" opacity=".65"/>
+    <rect y="215" width="400" height="85" fill="var(--grass)"/>
+    <polygon points="30,132 200,58 370,132" fill="var(--roof)"/>
+    <rect x="52" y="130" width="296" height="92" fill="var(--mass)"/>
+    <rect x="150" y="130" width="4" height="92" fill="var(--mass-2)"/>
+    <rect x="246" y="130" width="4" height="92" fill="var(--mass-2)"/>
+    <rect x="72" y="148" width="30" height="26" fill="var(--glass)"/>
+    <rect x="112" y="148" width="30" height="26" fill="var(--glass)"/>
+    <rect x="168" y="148" width="30" height="26" fill="var(--glass)"/>
+    <rect x="208" y="148" width="30" height="26" fill="var(--glass)"/>
+    <rect x="264" y="148" width="30" height="26" fill="var(--glass)"/>
+    <rect x="304" y="148" width="30" height="26" fill="var(--glass)"/>
+    <rect x="80" y="186" width="26" height="36" rx="2" fill="var(--door)"/>
+    <rect x="176" y="186" width="26" height="36" rx="2" fill="var(--door)"/>
+    <rect x="272" y="186" width="26" height="36" rx="2" fill="var(--door)"/>
+    <rect x="70" y="222" width="46" height="6" fill="var(--mass-2)"/>
+    <rect x="166" y="222" width="46" height="6" fill="var(--mass-2)"/>
+    <rect x="262" y="222" width="46" height="6" fill="var(--mass-2)"/>
+    <path d="M0 262 Q200 236 400 262 L400 300 L0 300 z" fill="var(--grass-2)" opacity=".55"/>
+    ${tree(30, 240, 1.05)} ${tree(372, 244, 1.15)}
+  `),
+
+  /* interior: window light, sofa, plant */
+  interior: () => svg(`
+    <rect width="400" height="300" fill="var(--wall)"/>
+    <rect y="228" width="400" height="72" fill="var(--floor)"/>
+    <rect x="212" y="42" width="140" height="118" rx="3" fill="var(--glass)"/>
+    <rect x="278" y="42" width="5" height="118" fill="var(--wall)"/>
+    <rect x="212" y="98" width="140" height="5" fill="var(--wall)"/>
+    <polygon points="212,160 352,160 392,228 190,228" fill="var(--sun)" opacity=".28"/>
+    <rect x="44" y="132" width="128" height="14" rx="3" fill="var(--mass-2)"/>
+    <rect x="52" y="60" width="62" height="50" rx="3" fill="var(--mass)"/>
+    <rect x="52" y="60" width="62" height="50" rx="3" fill="none" stroke="var(--roof)" stroke-width="3"/>
+    <rect x="40" y="176" width="150" height="42" rx="12" fill="var(--roof)"/>
+    <rect x="52" y="160" width="58" height="24" rx="8" fill="var(--door)" opacity=".85"/>
+    <rect x="118" y="160" width="58" height="24" rx="8" fill="var(--door)" opacity=".6"/>
+    <rect x="248" y="192" width="70" height="26" rx="5" fill="var(--mass-2)"/>
+    <ellipse cx="200" cy="252" rx="150" ry="20" fill="var(--mass)" opacity=".7"/>
+    <rect x="330" y="192" width="26" height="30" rx="4" fill="var(--trunk)"/>
+    <circle cx="336" cy="182" r="14" fill="var(--grass-2)"/>
+    <circle cx="352" cy="176" r="11" fill="var(--grass-2)"/>
+    <circle cx="343" cy="164" r="9" fill="var(--grass-2)"/>
+  `),
+
+  /* open land at low sun */
+  land: () => svg(`
+    <rect width="400" height="300" fill="var(--sky)"/>
+    <circle cx="118" cy="118" r="42" fill="var(--sun)" opacity=".8"/>
+    <path d="M0 168 Q90 138 190 166 Q290 194 400 158 L400 300 L0 300 z" fill="var(--grass)"/>
+    <path d="M0 208 Q120 186 250 212 Q330 228 400 208 L400 300 L0 300 z" fill="var(--grass-2)" opacity=".75"/>
+    <g stroke="var(--grass-2)" stroke-width="2" opacity=".7">
+      <path d="M-10 250 Q200 232 410 252"/><path d="M-10 268 Q200 248 410 270"/><path d="M-10 288 Q200 266 410 290"/>
+    </g>
+    <g fill="var(--trunk)">
+      <rect x="40" y="196" width="4" height="34"/><rect x="112" y="200" width="4" height="34"/>
+      <rect x="184" y="206" width="4" height="34"/><rect x="256" y="212" width="4" height="34"/>
+    </g>
+    <g stroke="var(--trunk)" stroke-width="2.5" opacity=".85">
+      <path d="M42 206 L114 210 L186 216 L258 222"/><path d="M42 220 L114 224 L186 230 L258 236"/>
+    </g>
+    ${tree(348, 208, 1.4)}
+  `),
+
+  /* pavilion, string lights, neighbors on the lawn */
+  commons: () => svg(`
+    <rect width="400" height="300" fill="var(--sky)"/>
+    <circle cx="70" cy="70" r="26" fill="var(--sun)" opacity=".55"/>
+    <rect y="196" width="400" height="104" fill="var(--grass)"/>
+    <polygon points="118,120 232,78 346,120" fill="var(--roof)"/>
+    <rect x="126" y="118" width="8" height="86" fill="var(--mass-2)"/>
+    <rect x="330" y="118" width="8" height="86" fill="var(--mass-2)"/>
+    <rect x="150" y="130" width="160" height="74" fill="var(--mass)"/>
+    <rect x="168" y="146" width="42" height="32" fill="var(--glass)"/>
+    <rect x="250" y="146" width="42" height="32" fill="var(--glass)"/>
+    <rect x="222" y="164" width="22" height="40" rx="2" fill="var(--door)"/>
+    <path d="M20 96 Q120 132 224 100" stroke="var(--trunk)" stroke-width="2" fill="none"/>
+    <g fill="var(--sun)">
+      <circle cx="52" cy="112" r="4"/><circle cx="88" cy="122" r="4"/><circle cx="124" cy="127" r="4"/>
+      <circle cx="160" cy="124" r="4"/><circle cx="196" cy="113" r="4"/>
+    </g>
+    <ellipse cx="200" cy="252" rx="170" ry="30" fill="var(--grass-2)" opacity=".55"/>
+    ${person(96, 246, 1.5)} ${person(128, 254, 1.6)} ${person(286, 250, 1.55)} ${person(316, 242, 1.4)}
+    ${tree(26, 214, 1.1)} ${tree(376, 220, 1.2)}
+  `),
+
+  /* raised beds */
+  garden: () => svg(`
+    <rect width="400" height="300" fill="var(--sky)"/>
+    <rect y="150" width="400" height="150" fill="var(--grass)"/>
+    <g>
+      <rect x="24" y="168" width="150" height="34" rx="4" fill="var(--trunk)"/>
+      <rect x="30" y="162" width="138" height="12" rx="3" fill="var(--floor)"/>
+      <rect x="226" y="168" width="150" height="34" rx="4" fill="var(--trunk)"/>
+      <rect x="232" y="162" width="138" height="12" rx="3" fill="var(--floor)"/>
+      <rect x="24" y="238" width="150" height="38" rx="4" fill="var(--trunk)"/>
+      <rect x="30" y="232" width="138" height="12" rx="3" fill="var(--floor)"/>
+      <rect x="226" y="238" width="150" height="38" rx="4" fill="var(--trunk)"/>
+      <rect x="232" y="232" width="138" height="12" rx="3" fill="var(--floor)"/>
+    </g>
+    <g fill="var(--door)">
+      <circle cx="52" cy="156" r="8"/><circle cx="86" cy="152" r="9"/><circle cx="122" cy="157" r="8"/>
+      <circle cx="254" cy="155" r="8"/><circle cx="290" cy="151" r="9"/><circle cx="326" cy="156" r="8"/>
+      <circle cx="52" cy="226" r="9"/><circle cx="92" cy="222" r="10"/><circle cx="132" cy="227" r="9"/>
+      <circle cx="256" cy="226" r="9"/><circle cx="296" cy="221" r="10"/><circle cx="336" cy="227" r="9"/>
+    </g>
+    <rect x="184" y="120" width="34" height="52" rx="4" fill="var(--mass-2)"/>
+    <polygon points="180,122 201,100 222,122" fill="var(--roof)"/>
+    ${tree(44, 130, .9)} ${tree(358, 126, .95)}
+  `),
+
+  /* half-court */
+  court: () => svg(`
+    <rect width="400" height="300" fill="var(--sky)"/>
+    <rect y="150" width="400" height="150" fill="var(--grass)"/>
+    <path d="M60 300 L110 168 L300 168 L360 300 z" fill="var(--mass-2)" opacity=".8"/>
+    <path d="M148 168 a58 42 0 0 0 116 0" fill="none" stroke="var(--soft)" stroke-width="3"/>
+    <rect x="176" y="168" width="60" height="2" fill="var(--soft)"/>
+    <rect x="196" y="66" width="7" height="104" fill="var(--roof)"/>
+    <rect x="168" y="60" width="62" height="40" rx="3" fill="var(--mass)"/>
+    <rect x="184" y="96" width="30" height="4" fill="var(--door)"/>
+    <ellipse cx="199" cy="108" rx="13" ry="5" fill="none" stroke="var(--clay)" stroke-width="3"/>
+    ${person(120, 254, 1.7)} ${person(288, 246, 1.6)}
+    ${tree(34, 176, 1.15)} ${tree(370, 180, 1.2)}
+  `),
+
+  /* wall-mounted cache: cabinet, extinguisher, supplies */
+  kit: () => svg(`
+    <rect width="400" height="300" fill="var(--wall)"/>
+    <rect y="252" width="400" height="48" fill="var(--floor)"/>
+    <rect x="118" y="52" width="164" height="128" rx="8" fill="var(--mass)" stroke="var(--roof)" stroke-width="4"/>
+    <rect x="200" y="52" width="4" height="128" fill="var(--mass-2)"/>
+    <rect x="186" y="108" width="10" height="20" rx="4" fill="var(--roof)"/>
+    <rect x="208" y="108" width="10" height="20" rx="4" fill="var(--roof)"/>
+    <rect x="146" y="96" width="34" height="10" rx="2" fill="var(--clay)"/>
+    <rect x="158" y="84" width="10" height="34" rx="2" fill="var(--clay)"/>
+    <rect x="222" y="84" width="34" height="10" rx="2" fill="var(--door)"/>
+    <rect x="234" y="72" width="10" height="34" rx="2" fill="var(--door)"/>
+    <rect x="222" y="126" width="46" height="34" rx="4" fill="var(--glass)"/>
+    <rect x="52" y="188" width="34" height="64" rx="10" fill="var(--clay)"/>
+    <rect x="60" y="172" width="18" height="20" rx="4" fill="var(--roof)"/>
+    <rect x="104" y="214" width="56" height="38" rx="5" fill="var(--glass)"/>
+    <rect x="118" y="204" width="28" height="12" rx="4" fill="var(--mass-2)"/>
+    <rect x="182" y="204" width="60" height="48" rx="6" fill="var(--mass-2)"/>
+    <rect x="196" y="216" width="32" height="8" rx="3" fill="var(--roof)" opacity=".5"/>
+    <rect x="264" y="222" width="72" height="30" rx="6" fill="var(--roof)"/>
+    <circle cx="282" cy="237" r="6" fill="var(--sun)"/>
+    <rect x="298" y="232" width="28" height="10" rx="3" fill="var(--mass)" opacity=".5"/>
+  `),
+
+  /* framing under construction */
+  build: () => svg(`
+    <rect width="400" height="300" fill="var(--sky)"/>
+    <circle cx="326" cy="66" r="28" fill="var(--sun)" opacity=".6"/>
+    <rect y="234" width="400" height="66" fill="var(--grass)"/>
+    <rect x="56" y="140" width="264" height="10" fill="var(--trunk)"/>
+    <rect x="56" y="234" width="264" height="10" fill="var(--trunk)"/>
+    <g fill="var(--trunk)">
+      <rect x="60" y="146" width="9" height="90"/><rect x="108" y="146" width="9" height="90"/>
+      <rect x="156" y="146" width="9" height="90"/><rect x="204" y="146" width="9" height="90"/>
+      <rect x="252" y="146" width="9" height="90"/><rect x="304" y="146" width="9" height="90"/>
+    </g>
+    <g stroke="var(--trunk)" stroke-width="8" fill="none">
+      <path d="M64 140 L124 96 L184 140"/><path d="M184 140 L244 96 L304 140"/>
+    </g>
+    <rect x="56" y="186" width="264" height="8" fill="var(--trunk)" opacity=".7"/>
+    <g fill="var(--mass-2)">
+      <rect x="326" y="216" width="60" height="8"/><rect x="330" y="226" width="60" height="8"/><rect x="326" y="236" width="60" height="8"/>
+    </g>
+    ${person(160, 234, 1.5)}
+    ${tree(24, 238, 1)}
+  `)
+};
+
+/* ============================================================
+   Content — swap these arrays to change the site.
+   ============================================================ */
+const UNITS = [
+  { id:'ce-a', name:'Cedar Row · Unit A', community:'Cedar Row', city:'Lakeland, FL', beds:2, baths:2, sqft:1080, rent:1795, status:'available', available:'Now', floor:'Ground floor', scene:'interior', cap:'Unit A · living room', tags:['Corner unit','Private patio','W/D in unit'], blurb:'Ground-floor corner with a wrap of south light, a fenced patio, and a straight walk to the Commons.', amenities:['In-unit washer/dryer','Quartz counters','Fenced patio','Covered parking (1)','Smart lock + video doorbell','Pet friendly (2 max)'] },
+  { id:'ce-b', name:'Cedar Row · Unit B', community:'Cedar Row', city:'Lakeland, FL', beds:3, baths:2, sqft:1340, rent:2150, status:'available', available:'Sep 1', floor:'Upper floor', scene:'interior', cap:'Unit B · great room', tags:['Top floor','Balcony','Vaulted ceiling'], blurb:'Three bedrooms up top with vaulted ceilings and a balcony that looks over the shared green.', amenities:['In-unit washer/dryer','Balcony','Vaulted ceilings','Covered parking (2)','Smart thermostat','Storage locker'] },
+  { id:'ce-c', name:'Cedar Row · Unit C', community:'Cedar Row', city:'Lakeland, FL', beds:1, baths:1, sqft:720, rent:1395, status:'leased', available:'Waitlist', floor:'Ground floor', scene:'garden', cap:'Unit C · garden door', tags:['Efficient','Garden access'], blurb:'The one-bedroom end unit — small footprint, big kitchen, door straight into the garden beds.', amenities:['In-unit washer/dryer','Garden plot included','Covered parking (1)','Smart lock'] },
+  { id:'ma-a', name:'Marigold Court · Unit A', community:'Marigold Court', city:'Ocala, FL', beds:2, baths:2, sqft:1120, rent:1690, status:'available', available:'Now', floor:'Ground floor', scene:'interior', cap:'Unit A · dining', tags:['ADA accessible','Zero-step entry'], blurb:'Zero-step entry, 36-inch doorways, and a roll-in shower — accessible without looking clinical.', amenities:['Zero-step entry','Roll-in shower','Lever hardware','In-unit washer/dryer','Covered parking (1)','Pet friendly'] },
+  { id:'ma-b', name:'Marigold Court · Unit B', community:'Marigold Court', city:'Ocala, FL', beds:3, baths:2.5, sqft:1480, rent:2295, status:'available', available:'Oct 15', floor:'Two-story', scene:'interior', cap:'Unit B · stairwell', tags:['Townhome style','Office nook'], blurb:'Two-story townhome layout with an office nook on the landing and a two-car pad out front.', amenities:['Office nook','Half bath down','In-unit washer/dryer','Two-car pad','Smart thermostat','Storage locker'] },
+  { id:'ma-c', name:'Marigold Court · Unit C', community:'Marigold Court', city:'Ocala, FL', beds:2, baths:1, sqft:940, rent:1550, status:'soon', available:'Nov 1', floor:'Upper floor', scene:'triplex', cap:'Unit C · treetop side', tags:['Pre-lease open','Treetop view'], blurb:'Pre-leasing now. Upper unit tucked under the oaks with a screened sleeping porch.', amenities:['Screened porch','In-unit washer/dryer','Covered parking (1)','Smart lock'] },
+  { id:'wi-a', name:'Willow Bend · Unit A', community:'Willow Bend', city:'Savannah, GA', beds:2, baths:2, sqft:1060, rent:1875, status:'available', available:'Now', floor:'Ground floor', scene:'interior', cap:'Unit A · kitchen', tags:['New build','Solar-ready'], blurb:'First delivery at Willow Bend — everything new, panel pre-wired for rooftop solar.', amenities:['Solar-ready panel','Induction range','In-unit washer/dryer','EV-ready outlet','Covered parking (1)'] },
+  { id:'wi-b', name:'Willow Bend · Unit B', community:'Willow Bend', city:'Savannah, GA', beds:3, baths:2, sqft:1390, rent:2380, status:'soon', available:'Dec 1', floor:'Upper floor', scene:'triplex', cap:'Unit B · corner windows', tags:['Pre-lease open','Corner windows'], blurb:'Corner windows on three sides, and the only unit with a direct view of the activity center lawn.', amenities:['Corner windows','Balcony','In-unit washer/dryer','Covered parking (2)','Smart thermostat'] },
+  { id:'wi-c', name:'Willow Bend · Unit C', community:'Willow Bend', city:'Savannah, GA', beds:1, baths:1, sqft:760, rent:1425, status:'available', available:'Now', floor:'Ground floor', scene:'interior', cap:'Unit C · live/work', tags:['Live/work','Street entry'], blurb:'Live/work end unit with its own street door — zoned for a quiet shopfront or studio.', amenities:['Separate street entry','Live/work zoning','In-unit washer/dryer','Utility sink','Covered parking (1)'] }
+];
+
+const TRIPLEXES = [
+  { name:'The Cedar', community:'Cedar Row', city:'Lakeland, FL', price:749000, status:'available', sqft:3140, lot:'0.28 ac', scene:'triplex', cap:'The Cedar · street view', mix:'2BR + 3BR + 1BR', rentRoll:5340, expenses:1580, capRate:6.0, blurb:'Our flagship plan: three units, three private entries, one shared green. Delivered leased.', highlights:['All three units leased at delivery','Impact windows + 30-yr shingle','Separately metered water, power, internet'] },
+  { name:'The Marigold', community:'Marigold Court', city:'Ocala, FL', price:689000, status:'available', sqft:3540, lot:'0.31 ac', scene:'triplex', cap:'The Marigold · front elevation', mix:'2BR + 3BR + 2BR', rentRoll:5535, expenses:1610, capRate:6.8, blurb:'Wider lot, accessible ground unit, and the strongest pro-forma of the current release.', highlights:['Ground unit built to full ADA spec','Two-car pad per unit','Pre-wired for solar and EV'] },
+  { name:'The Willow', community:'Willow Bend', city:'Savannah, GA', price:812000, status:'soon', sqft:3210, lot:'0.26 ac', scene:'build', cap:'The Willow · in framing', mix:'2BR + 3BR + 1BR live/work', rentRoll:5680, expenses:1690, capRate:5.9, blurb:'Corner parcel across from the Willow Bend activity center. Live/work end unit included.', highlights:['Live/work end unit with street door','Faces the activity center lawn','Reservation holds price through close'] },
+  { name:'The Juniper', community:'Cedar Row', city:'Lakeland, FL', price:724000, status:'sold', sqft:3080, lot:'0.25 ac', scene:'triplex', cap:'The Juniper · rear yard', mix:'2BR + 2BR + 2BR', rentRoll:5190, expenses:1540, capRate:6.1, blurb:'Sold to a first-time small-multifamily buyer. Shown here as a reference build.', highlights:['Identical unit mix on all three floors','Closed 41 days from reservation','Managed by our team post-close'] }
+];
+
+const CENTERS = [
+  { name:'The Commons at Cedar Row', city:'Lakeland, FL', size:'2,400 sq ft', status:'Open', scene:'commons', cap:'The Commons', blurb:'The living room of the neighborhood — open seating, a teaching kitchen, and a porch that runs the length of the building.', features:['Teaching kitchen','Two bookable meeting rooms','Free Wi-Fi + printing','Tool library'] },
+  { name:'Marigold Workshop', city:'Ocala, FL', size:'1,800 sq ft', status:'Open', scene:'build', cap:'Marigold Workshop', blurb:'A maker space and after-school room in one. Benches by day, homework tables by afternoon.', features:['Shared workbenches','After-school room','Quiet study booths','Weekly repair café'] },
+  { name:'Willow Bend Green', city:'Savannah, GA', size:'0.6 acre', status:'Building', scene:'court', cap:'Willow Bend Green', blurb:'Half-court, shade structure, and a lawn sized for a hundred folding chairs. Opening with phase two.', features:['Half-court + open lawn','Shade pavilion','Outdoor movie wall','Walking loop'] },
+  { name:'Cedar Row Garden Block', city:'Lakeland, FL', size:'32 plots', status:'Open', scene:'garden', cap:'Garden Block', blurb:'Raised beds assigned by lottery each spring, plus a shared herb strip anyone can pick from.', features:['32 raised beds','Shared tool shed','Rain catchment','Spring seed swap'] }
+];
+
+const KITS = [
+  { name:'Unit Kit', price:'Included with every lease', badge:'In every unit', scene:'kit', cap:'Unit kit', blurb:'Mounted by the door of all three units before move-in day, and restocked every year at no charge.', contents:['Smoke + CO alarms (10-yr sealed)','5 lb ABC fire extinguisher','Trauma-rated first aid kit','Flashlight + spare batteries','Water + gas shutoff tags'] },
+  { name:'Storm Kit', price:'$149', badge:'Most requested', scene:'kit', cap:'Storm kit', blurb:'The 72-hour bag for hurricane season. Sized per household when you tell us how many people and pets.', contents:['72 hrs water + purification tabs','Shelf-stable food, 3 days','Hand-crank radio + charger','Document dry bag','N95s, gloves, tarp','Pet supply pouch'] },
+  { name:'Block Cache', price:'Funded per community', badge:'Shared resource', scene:'kit', cap:'Block cache', blurb:'A locked cabinet at every activity center, opened by trained volunteer neighbors when the power goes out.', contents:['AED + bleeding control kit','Generator + fuel rotation','Bulk water and cots','Two-way radio set','Printed neighbor roster'] }
+];
+
+const EVENTS = [
+  ['Aug 9','Repair Café','Marigold Workshop','Bring one broken thing.'],
+  ['Aug 16','Hurricane Prep Walk-Thru','The Commons at Cedar Row','Free storm kit checklist.'],
+  ['Aug 23','Movie on the Green','Willow Bend Green','Sunset. Bring a chair.'],
+  ['Sep 6','CPR + Stop the Bleed','The Commons at Cedar Row','2 hrs, certification included.'],
+  ['Sep 13','Garden Plot Lottery','Cedar Row Garden Block','Residents first, then waitlist.'],
+  ['Sep 27','New Owner Orientation','Marigold Workshop','For buyers closing this fall.']
+];
+
+const KIT_TABLE = [
+  ['Smoke + CO alarms', 1, 0, 0], ['Fire extinguisher (5 lb ABC)', 1, 0, 1],
+  ['First aid kit', 1, 1, 1], ['Bleeding control / trauma kit', 0, 0, 1],
+  ['AED', 0, 0, 1], ['Water, 72 hours', 0, 1, 1], ['Shelf-stable food, 3 days', 0, 1, 1],
+  ['Hand-crank radio + charger', 0, 1, 1], ['Flashlight + batteries', 1, 1, 1],
+  ['Two-way radios', 0, 0, 1], ['Generator + rotated fuel', 0, 0, 1],
+  ['Document dry bag', 0, 1, 0], ['N95s, gloves, tarp', 0, 1, 1],
+  ['Pet supplies', 0, 1, 1], ['Shutoff tags (water / gas / power)', 1, 0, 1],
+  ['Printed neighbor roster', 0, 0, 1]
+];
+
+/* ============================================================
+   Render
+   ============================================================ */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const money = n => '$' + n.toLocaleString('en-US');
+const scene = (name, cap, ratio = '4x3') =>
+  `<div class="ph ph--${ratio}">${(SCENES[name] || SCENES.triplex)()}<span class="ph__cap">${cap}</span></div>`;
+
+const STATUS = {
+  available: '<span class="chip">Available</span>',
+  soon: '<span class="chip chip--warn">Pre-leasing</span>',
+  leased: '<span class="chip chip--muted">Leased</span>',
+  sold: '<span class="chip chip--muted">Sold</span>'
+};
+
+const ICONS = {
+  home: '<svg viewBox="0 0 24 24"><path d="M3 10.5 12 4l9 6.5"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>',
+  key:  '<svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="M11 12 20 3"/><path d="M17 6l2 2"/><path d="M14.5 8.5l2 2"/></svg>',
+  people:'<svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><circle cx="17.5" cy="9.5" r="2.5"/><path d="M16 20a5.5 5.5 0 0 1 5.5-5"/></svg>',
+  kit:  '<svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M12 11v5"/><path d="M9.5 13.5h5"/></svg>'
+};
+
+function unitCard(u) {
+  return `<article class="card">
+    <div class="card__media">
+      <div class="card__ribbon">${STATUS[u.status]}</div>
+      ${scene(u.scene, u.cap, '4x3')}
+    </div>
+    <div class="card__body">
+      <h3 class="card__title">${u.name}</h3>
+      <p class="card__meta">${u.city} · ${u.floor} · Available ${u.available}</p>
+      <div class="specs"><span>${u.beds} bd</span><span>${u.baths} ba</span><span>${u.sqft.toLocaleString()} sf</span></div>
+      <div class="tagrow">${u.tags.map(t => `<span class="chip chip--muted">${t}</span>`).join('')}</div>
+      <div class="card__foot">
+        <div class="price">${money(u.rent)} <small>/ mo</small></div>
+        <button class="btn btn--ghost btn--sm" data-unit="${u.id}">View unit</button>
+      </div>
+    </div>
+  </article>`;
+}
+
+function triplexCard(t) {
+  const noi = (t.rentRoll - t.expenses) * 12;
+  return `<article class="card">
+    <div class="card__media">
+      <div class="card__ribbon">${STATUS[t.status]}</div>
+      ${scene(t.scene, t.cap, '16x9')}
+    </div>
+    <div class="card__body">
+      <h3 class="card__title">${t.name} <span class="muted" style="font-weight:500">· ${t.community}</span></h3>
+      <p class="card__meta">${t.city} · ${t.mix} · ${t.sqft.toLocaleString()} sf on ${t.lot}</p>
+      <p class="card__meta">${t.blurb}</p>
+      <div class="tscroll" style="border-radius:11px">
+        <table class="mini">
+          <tbody>
+            <tr><td>Gross rent roll</td><td class="num"><strong>${money(t.rentRoll)}/mo</strong></td></tr>
+            <tr><td>Operating expenses</td><td class="num">${money(t.expenses)}/mo</td></tr>
+            <tr><td>Net operating income</td><td class="num"><strong>${money(noi)}/yr</strong></td></tr>
+            <tr><td>Pro-forma cap rate</td><td class="num"><strong>${t.capRate.toFixed(1)}%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="checklist">${t.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
+      <div class="card__foot">
+        <div class="price">${money(t.price)}</div>
+        <a class="btn ${t.status === 'sold' ? 'btn--ghost' : 'btn--primary'} btn--sm" href="#contact">
+          ${t.status === 'sold' ? 'See similar' : t.status === 'soon' ? 'Reserve' : 'Book a walkthrough'}
+        </a>
+      </div>
+    </div>
+  </article>`;
+}
+
+const centerCard = c => `<article class="card">
+  <div class="card__media">
+    <div class="card__ribbon"><span class="chip ${c.status === 'Open' ? '' : 'chip--warn'}">${c.status}</span></div>
+    ${scene(c.scene, c.cap, '16x9')}
+  </div>
+  <div class="card__body">
+    <h3 class="card__title">${c.name}</h3>
+    <p class="card__meta">${c.city} · ${c.size}</p>
+    <p class="card__meta">${c.blurb}</p>
+    <ul class="checklist">${c.features.map(f => `<li>${f}</li>`).join('')}</ul>
+  </div>
+</article>`;
+
+const kitCard = k => `<article class="card">
+  <div class="card__media">
+    <div class="card__ribbon"><span class="chip chip--clay">${k.badge}</span></div>
+    ${scene(k.scene, k.cap, '4x3')}
+  </div>
+  <div class="card__body">
+    <h3 class="card__title">${k.name}</h3>
+    <p class="card__meta" style="color:var(--accent);font-weight:620">${k.price}</p>
+    <p class="card__meta">${k.blurb}</p>
+    <ul class="checklist">${k.contents.map(c => `<li>${c}</li>`).join('')}</ul>
+    <div class="card__foot">
+      <span class="muted" style="font-size:.83rem">Restocked yearly</span>
+      <a class="btn btn--ghost btn--sm" href="#contact">Request kit</a>
+    </div>
+  </div>
+</article>`;
+
+const stepList = steps => steps.map((s, i) =>
+  `<div class="step"><b>${String(i + 1).padStart(2, '0')}</b><div><h3>${s[0]}</h3><p>${s[1]}</p></div></div>`).join('');
+
+/* fill static blocks */
+$('#pillars').innerHTML = [
+  ['home', 'Rent by the unit', 'Each triplex holds three separate homes. We lease them one at a time, manage them ourselves, and answer the phone.', '#rent', 'See open units'],
+  ['key', 'Buy the building', 'Buy a finished triplex with tenants in place — live in one unit and let the other two carry the note.', '#buy', "See what's for sale"],
+  ['people', 'Activity centers', 'Every community gets a real building to gather in: a kitchen, tables, Wi-Fi, and a door that stays open.', '#community', 'Tour the spaces'],
+  ['kit', 'Safety kits', 'Alarms, extinguisher, first aid, and a 72-hour storm bag. Standard in every unit, restocked yearly.', '#safety', "What's inside"]
+].map(p => `<div class="feature">
+  <div class="feature__icon">${ICONS[p[0]]}</div>
+  <h3>${p[1]}</h3><p>${p[2]}</p><a href="${p[3]}">${p[4]} →</a>
+</div>`).join('');
+
+$('#modelSteps').innerHTML = stepList([
+  ['Find and buy the land', 'Infill lots and small acreage, zoned or rezonable for three units.'],
+  ['Build the triplex', 'One roof, three private entries, separate meters, shared green.'],
+  ['Lease or sell', 'Rent unit by unit, or sell to an owner who wants a tenant-funded mortgage.'],
+  ['Build the commons', 'An activity center and a stocked safety cache before the last unit is leased.']
+]);
+
+$('#leaseSteps').innerHTML = stepList([
+  ['Tour the unit', "In person, or a video walkthrough if you're moving from out of state."],
+  ['Apply online', 'One flat application fee per adult. Decision in two business days.'],
+  ['Sign and schedule', 'Deposit equal to one month. No admin fee, no amenity fee.'],
+  ['Move in', 'Keys, safety kit walkthrough, and an intro to whoever runs the activity center.']
+]);
+
+$('#buySteps').innerHTML = stepList([
+  ['Reserve', 'A refundable deposit holds the building and locks the price through closing.'],
+  ['Review the package', 'Plans, budget, rent comps, warranty terms, and the current rent roll.'],
+  ['Walkthrough', 'Punch list before close, re-walked after. Nothing signs until the list is empty.'],
+  ['Close', 'Leases, deposits, and warranties assign at the table.']
+]);
+
+$('#trainSteps').innerHTML = stepList([
+  ['CPR + Stop the Bleed', 'Two hours, certification included, taught by a licensed instructor.'],
+  ['Storm season walk-through', 'Kit check, shutoff locations, evacuation routes, and who to call.'],
+  ['Cache volunteer training', 'For the neighbors who hold keys to the block cache.']
+]);
+
+$('#contactSteps').innerHTML = stepList([
+  ['You need a place to live', "Send the town and bedroom count. We'll flag you before a unit lists."],
+  ['You want to own a building', "We'll send the offering package with plans, rent comps, and warranty terms."],
+  ['You have land to sell', "Infill lots and small acreage inside town limits — anything rezonable for three units."],
+  ['You want to run something', "A class, a repair night, a supper club. We'll give you the room."]
+]);
+
+$('#homeUnits').innerHTML = UNITS.filter(u => u.status !== 'leased').slice(0, 3).map(unitCard).join('');
+$('#homeTriplexes').innerHTML = TRIPLEXES.filter(t => t.status !== 'sold').slice(0, 2).map(triplexCard).join('');
+$('#homeCenters').innerHTML = CENTERS.slice(0, 3).map(centerCard).join('');
+$('#homeKits').innerHTML = KITS.map(kitCard).join('');
+$('#triplexGrid').innerHTML = TRIPLEXES.map(triplexCard).join('');
+$('#centerGrid').innerHTML = CENTERS.map(centerCard).join('');
+$('#kitGrid').innerHTML = KITS.map(kitCard).join('');
+
+$('#eventList').innerHTML = `<div class="tscroll"><table>
+  <thead><tr><th>Date</th><th>What</th><th>Where</th><th>Notes</th></tr></thead>
+  <tbody>${EVENTS.map(e => `<tr><td><strong>${e[0]}</strong></td><td>${e[1]}</td><td class="muted">${e[2]}</td><td class="muted">${e[3]}</td></tr>`).join('')}</tbody>
+</table></div>`;
+
+$('#kitTable').innerHTML = KIT_TABLE.map(r =>
+  `<tr><td>${r[0]}</td><td>${r[1] ? '✓' : '—'}</td><td>${r[2] ? '✓' : '—'}</td><td>${r[3] ? '✓' : '—'}</td></tr>`).join('');
+
+/* standalone scene slots */
+$$('[data-scene]').forEach(n => { n.innerHTML = scene(n.dataset.scene, n.dataset.cap, n.dataset.ratio); });
+
+/* ============================================================
+   Behavior
+   ============================================================ */
+const nav = $('#nav'), menuBtn = $('#menuBtn');
+menuBtn.addEventListener('click', () => {
+  const open = nav.classList.toggle('is-open');
+  menuBtn.setAttribute('aria-expanded', String(open));
+});
+
+function route() {
+  const id = (location.hash || '#home').slice(1);
+  const page = $('#page-' + id) || $('#page-home');
+  $$('.page').forEach(p => p.classList.toggle('is-active', p === page));
+  $$('#nav a').forEach(a => {
+    if (a.getAttribute('href') === '#' + id) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
+  nav.classList.remove('is-open');
+  menuBtn.setAttribute('aria-expanded', 'false');
+  window.scrollTo({ top: 0, behavior: 'auto' });
+  revealIn(page);
+}
+window.addEventListener('hashchange', route);
+
+/* reveal on scroll */
+let io = null;
+if ('IntersectionObserver' in window) {
+  io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+  }, { threshold: .08, rootMargin: '0px 0px -6% 0px' });
+}
+function revealIn(root) {
+  $$('.rv', root).forEach(n => io ? io.observe(n) : n.classList.add('in'));
+}
+
+/* unit sheet */
+const sheet = $('#sheet');
+function openSheet(u) {
+  $('#sheetBody').innerHTML = `
+    ${scene(u.scene, u.cap, '16x9')}
+    <div class="sheet__in">
+      <div class="row between">
+        <div><h2 style="margin:0;font-size:1.35rem">${u.name}</h2><p class="muted" style="margin:0;font-size:.9rem">${u.community} · ${u.city}</p></div>
+        <div class="price">${money(u.rent)} <small>/ mo</small></div>
+      </div>
+      <p style="margin:0">${u.blurb}</p>
+      <div class="specs">
+        <span>${u.beds} bedroom</span><span>${u.baths} bath</span>
+        <span>${u.sqft.toLocaleString()} sq ft</span><span>Available ${u.available}</span>
+      </div>
+      <h3 style="margin:8px 0 0">What's in the unit</h3>
+      <ul class="checklist">${u.amenities.map(a => `<li>${a}</li>`).join('')}</ul>
+      <div class="note">Applications, tours, and deposits aren't wired up in this prototype.</div>
+      <button class="btn btn--primary btn--block" id="tourBtn">Request a tour</button>
+    </div>`;
+  sheet.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  $('#tourBtn').addEventListener('click', () => { closeSheet(); toast('Tour request noted — this prototype has no backend yet.'); });
+}
+function closeSheet() { sheet.classList.remove('is-open'); document.body.style.overflow = ''; }
+sheet.addEventListener('click', e => { if (e.target.closest('[data-close]')) closeSheet(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-unit]');
+  if (b) { const u = UNITS.find(x => x.id === b.dataset.unit); if (u) openSheet(u); }
+});
+
+/* toast */
+let tt;
+function toast(msg) {
+  const t = $('#toast');
+  t.textContent = msg;
+  t.classList.add('is-on');
+  clearTimeout(tt);
+  tt = setTimeout(() => t.classList.remove('is-on'), 3200);
+}
+$('#contactForm').addEventListener('submit', e => {
+  e.preventDefault();
+  toast("Prototype only — this form doesn't send anywhere yet.");
+  e.target.reset();
+});
+
+/* rentals filter */
+const F = { community: $('#fCommunity'), beds: $('#fBeds'), price: $('#fPrice'), status: $('#fStatus'), sort: $('#fSort') };
+[...new Set(UNITS.map(u => u.community))].forEach(c => {
+  const o = document.createElement('option'); o.value = c; o.textContent = c; F.community.appendChild(o);
+});
+function applyFilters() {
+  let list = UNITS.filter(u => {
+    if (F.community.value !== 'all' && u.community !== F.community.value) return false;
+    if (F.beds.value !== 'all' && u.beds < +F.beds.value) return false;
+    if (F.price.value !== 'all' && u.rent > +F.price.value) return false;
+    if (F.status.value === 'open' && u.status === 'leased') return false;
+    if (F.status.value === 'now' && u.status !== 'available') return false;
+    return true;
+  });
+  const sorters = {
+    'price-asc': (a, b) => a.rent - b.rent, 'price-desc': (a, b) => b.rent - a.rent,
+    'size-desc': (a, b) => b.sqft - a.sqft, 'beds-desc': (a, b) => b.beds - a.beds
+  };
+  list.sort(sorters[F.sort.value]);
+  $('#unitGrid').innerHTML = list.length
+    ? list.map(unitCard).join('')
+    : '<div class="empty" style="grid-column:1/-1">No units match those filters yet. Widen the search — or join the waitlist and we\'ll call when one opens.</div>';
+  $('#count').textContent = list.length === 1 ? '1 unit' : list.length + ' units';
+}
+Object.values(F).forEach(c => c.addEventListener('change', applyFilters));
+applyFilters();
+
+route();
+</script>

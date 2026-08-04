@@ -56,3 +56,9 @@ project photography when you have it.
 Applications, payments, lease signing, listing CMS, availability sync, and email delivery are all
 out of scope for this prototype. Financial figures on the triplex pages are illustrative sample
 numbers, not offers or projections.
+
+## Single-file preview
+
+`preview.html` is the whole site condensed into one self-contained file — all six pages behind hash
+navigation, no external requests at all. Photos are replaced with drawn vector scenes so it works
+with no network. Useful for sending someone a link or opening the demo on a phone.
