@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rent a unit — True You Communities</title>
+<meta name="description" content="Browse available triplex units by bedrooms, price, and community. Lease one unit, not a whole building.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231f6f52'/><text x='50' y='70' font-size='58' font-family='sans-serif' font-weight='bold' fill='%23fff' text-anchor='middle'>T</text></svg>">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html">
+      <span class="brand__mark">T</span>
+      <span class="brand__name">True You<small>Communities</small></span>
+    </a>
+    <button class="icon-btn nav__toggle" data-nav-toggle aria-expanded="false" aria-label="Menu">☰</button>
+    <nav class="nav__links" data-nav-links>
+      <a href="index.html">Home</a>
+      <a href="rentals.html">Rent a unit</a>
+      <a href="triplexes.html">Buy a triplex</a>
+      <a href="community.html">Community</a>
+      <a href="safety.html">Safety kits</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">☾</button>
+      <a class="btn btn--primary btn--sm" href="contact.html">Join the waitlist</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">Rent by the unit</span>
+      <h1>One door, one lease, one neighbor on each side.</h1>
+      <p>
+        Every building is three separate homes. You lease yours — not a share of anything, not a room.
+        Management is in-house, maintenance requests go to a person, and the safety kit is already
+        mounted by the door when you get the keys.
+      </p>
+      <div class="row mt-2">
+        <span class="chip">In-house management</span>
+        <span class="chip">Pet friendly</span>
+        <span class="chip">Safety kit included</span>
+        <span class="chip">Activity center access</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="filters reveal">
+        <div class="field">
+          <label for="f-community">Community</label>
+          <select id="f-community"><option value="all">All communities</option></select>
+        </div>
+        <div class="field">
+          <label for="f-beds">Bedrooms</label>
+          <select id="f-beds">
+            <option value="all">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-price">Max rent</label>
+          <select id="f-price">
+            <option value="all">No max</option>
+            <option value="1500">$1,500</option>
+            <option value="1800">$1,800</option>
+            <option value="2100">$2,100</option>
+            <option value="2400">$2,400</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-status">Availability</label>
+          <select id="f-status">
+            <option value="all">Everything</option>
+            <option value="open">Open + pre-leasing</option>
+            <option value="now">Move-in ready</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-sort">Sort by</label>
+          <select id="f-sort">
+            <option value="price-asc">Rent, low to high</option>
+            <option value="price-desc">Rent, high to low</option>
+            <option value="size-desc">Square feet</option>
+            <option value="beds-desc">Bedrooms</option>
+          </select>
+        </div>
+        <button class="btn btn--ghost" id="f-reset" type="button">Reset</button>
+      </div>
+
+      <div class="results-line">
+        <strong id="result-count">—</strong>
+        <span class="demo-flag">◆ Sample listings — nothing here is a real vacancy</span>
+      </div>
+
+      <div class="grid g-3" id="unit-grid"></div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="wrap split">
+      <div class="reveal">
+        <span class="eyebrow">How leasing works</span>
+        <h2>Four steps, no mystery fees.</h2>
+        <div class="steps mt-2">
+          <div class="step"><div><h3>Tour the unit</h3><p>In person, or a video walkthrough if you're moving from out of state.</p></div></div>
+          <div class="step"><div><h3>Apply online</h3><p>One flat application fee per adult. Decision in two business days.</p></div></div>
+          <div class="step"><div><h3>Sign and schedule</h3><p>Deposit equal to one month. No admin fee, no amenity fee, no "convenience" fee.</p></div></div>
+          <div class="step"><div><h3>Move in</h3><p>Keys, safety kit walkthrough, and an intro to whoever runs the activity center.</p></div></div>
+        </div>
+        <div class="note mt-3">This prototype doesn't process applications — the buttons are for layout only.</div>
+      </div>
+      <div class="reveal">
+        <div class="ph ph--4x3" data-label="Kitchen" style="border-radius:24px;box-shadow:var(--shadow-lg)">
+          <img src="" alt="Bright unit kitchen" id="lease-img">
+        </div>
+        <div class="grid g-2 mt-2">
+          <div class="feature">
+            <h3 style="font-size:1rem">Included in rent</h3>
+            <p style="font-size:.9rem">Lawn care, pest control, safety kit restocking, and activity center access.</p>
+          </div>
+          <div class="feature">
+            <h3 style="font-size:1rem">Metered separately</h3>
+            <p style="font-size:.9rem">Power, water, and internet — your unit, your account, your bill.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight" style="padding-bottom:clamp(56px,9vw,116px)">
+    <div class="wrap">
+      <div class="banner reveal">
+        <div style="max-width:56ch">
+          <h2>Nothing open in your community?</h2>
+          <p>The waitlist is real even when the vacancy isn't. Tell us the town, the bedroom count, and
+          when you need to move — we'll call before a unit hits this page.</p>
+          <a class="btn btn--primary mt-1" href="contact.html">Join the waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="index.html" style="color:#fff">
+          <span class="brand__mark">T</span>
+          <span class="brand__name">True You<small style="color:#8ba398">Communities</small></span>
+        </a>
+        <p style="color:#8ba398;font-size:.92rem;margin-top:14px;max-width:34ch">
+          Land, triplexes, and the parts of a neighborhood that don't fit in a floor plan.
+        </p>
+      </div>
+      <div>
+        <h4>Live here</h4>
+        <div class="footer__links">
+          <a href="rentals.html">Available units</a>
+          <a href="contact.html">Join the waitlist</a>
+        </div>
+      </div>
+      <div>
+        <h4>Own here</h4>
+        <div class="footer__links">
+          <a href="triplexes.html">Triplexes for sale</a>
+          <a href="contact.html">Talk to us</a>
+        </div>
+      </div>
+      <div>
+        <h4>Community</h4>
+        <div class="footer__links">
+          <a href="community.html">Activity centers</a>
+          <a href="safety.html">Safety kits</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 True You Communities · Prototype</span>
+      <span class="demo-flag">◆ Demo site — sample content, no backend</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/site.js"></script>
+<script>document.getElementById('lease-img').src = IMG.kitchen;</script>
+</body>
+</html>
