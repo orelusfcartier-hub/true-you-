@@ -36,10 +36,14 @@ function initNav() {
   const toggle = $('[data-nav-toggle]');
   const links = $('[data-nav-links]');
   if (toggle && links) {
-    toggle.addEventListener('click', () => {
-      const open = links.classList.toggle('is-open');
+    const setOpen = open => {
+      links.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', String(open));
-    });
+      toggle.textContent = open ? '✕' : '☰';
+      document.body.classList.toggle('nav-open', open);
+    };
+    toggle.addEventListener('click', () => setOpen(!links.classList.contains('is-open')));
+    links.addEventListener('click', e => { if (e.target.closest('a')) setOpen(false); });
   }
   // mark the current page
   const here = location.pathname.split('/').pop() || 'index.html';
