@@ -425,3 +425,6 @@ tbody tr:last-child td { border-bottom: 0; }
 .between { justify-content: space-between; }
 .empty { padding: 60px 20px; text-align: center; color: var(--text-muted); border: 1px dashed var(--border); border-radius: var(--r); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* mobile-only markup (styled in mobile.css); never rendered on desktop */
+.m-cta { display: none; }
