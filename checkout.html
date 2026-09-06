@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Checkout — True You</title>
+<meta name="description" content="Review your bag and place your order.">
+<meta name="theme-color" content="#14052e">
+<meta property="og:title" content="Checkout — True You">
+<meta property="og:description" content="Review your bag and place your order.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2314052e'/><text x='50' y='72' font-size='60' font-family='Arial Black,sans-serif' font-weight='900' fill='%23ff2d95' text-anchor='middle'>T</text><circle cx='78' cy='24' r='9' fill='%23fff01f'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Outfit:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/retro.css">
+</head>
+<body>
+
+<div class="surprise-bar" data-show-when="today" hidden>
+  <span>🎁 IT'S LAUNCH DAY! Every order placed today gets a surprise in the box.</span>
+  <a href="shop.html">Shop now →</a>
+</div>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="True You home"><span class="brand__name" data-brand>True You</span></a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Quizzes</a>
+      <a href="coming-soon.html">Coming soon</a>
+      <a href="about.html">Bella</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" data-cart-open aria-label="Open your bag">🛍️<span class="badge" data-cart-count>0</span></button>
+      <button class="icon-btn nav__toggle" data-menu-toggle aria-expanded="false" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="menu" data-menu aria-label="Menu">
+  <div class="menu__top"><span class="brand__name" data-brand>True You</span><button class="icon-btn" data-menu-close aria-label="Close menu">✕</button></div>
+  <ul class="menu__links">
+    <li><a href="index.html">Home <small>start here</small></a></li>
+    <li><a href="shop.html">Shop <small>the launch drop</small></a></li>
+    <li><a href="quiz.html">Quizzes <small>find your era</small></a></li>
+    <li><a href="coming-soon.html">Coming soon <small>vote on what's next</small></a></li>
+    <li><a href="about.html">Bella <small>the story + FAQ</small></a></li>
+  </ul>
+  <div class="menu__foot"><a class="btn btn--sm btn--white" href="shop.html">Shop the drop</a><a class="btn btn--sm btn--ghost" href="checkout.html">Checkout</a></div>
+</div>
+
+<div class="ticker" aria-hidden="true"><div class="ticker__track" data-ticker></div></div>
+
+<main>
+
+  <section class="section section--cream memphis" style="padding-block:32px 60px">
+    <div class="wrap">
+      <span class="eyebrow">Checkout</span>
+      <h1 style="font-size:clamp(2rem,9vw,3.2rem)">Almost <span class="outline">yours</span></h1>
+      <div data-show-when="today" hidden>
+        <div class="surprise" style="margin:12px 0 20px">
+          <span class="surprise__spark" style="top:6px;right:10px">✨</span>
+          <div class="surprise__title" style="font-size:1.2rem">🎁 Launch day: your surprise is already in the box.</div>
+          <p style="margin:0">Code <strong data-surprise-code>LAUNCH</strong> is applied for 20% off, today only.</p>
+        </div>
+      </div>
+      <div class="checkout" data-checkout>
+        <form class="panel" data-checkout-form novalidate>
+          <h2>Where's it going?</h2>
+          <div class="field"><label for="co-name">Full name</label><input id="co-name" name="name" type="text" required autocomplete="name"><span class="field__err">We need a name for the box</span></div>
+          <div class="field"><label for="co-email">Email</label><input id="co-email" name="email" type="email" required autocomplete="email" inputmode="email"><span class="field__err">Add a real email so we can send tracking</span></div>
+          <div class="field"><label for="co-phone">Phone (optional)</label><input id="co-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div>
+          <div class="field"><label for="co-address">Street address</label><input id="co-address" name="address" type="text" required autocomplete="street-address"><span class="field__err">Where should it go?</span></div>
+          <div class="form-row">
+            <div class="field"><label for="co-city">City</label><input id="co-city" name="city" type="text" required autocomplete="address-level2"><span class="field__err">City?</span></div>
+            <div class="field"><label for="co-zip">ZIP / Postal</label><input id="co-zip" name="zip" type="text" required autocomplete="postal-code"><span class="field__err">ZIP?</span></div>
+          </div>
+          <div class="field"><label for="co-country">Country</label>
+            <select id="co-country" name="country" required autocomplete="country-name">
+              <option>United States</option><option>Canada</option><option>United Kingdom</option>
+              <option>Jamaica</option><option>Trinidad and Tobago</option><option>Barbados</option><option>Haiti</option><option>Bahamas</option><option>Dominican Republic</option><option>Puerto Rico</option><option>Other</option>
+            </select></div>
+          <div class="field"><label for="co-note">Note for Bella (optional)</label><input id="co-note" name="note" type="text" placeholder="Gift? Birthday? Say hi."></div>
+          <button class="btn btn--pink btn--block" data-place-order>Place order</button>
+          <p class="muted" style="font-size:.85rem;margin:12px 0 0">Payment link is sent after you place the order. Nothing is charged on this page.</p>
+        </form>
+        <aside class="panel"><h2>Your bag</h2><div data-checkout-summary></div></aside>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot-grid">
+    <div>
+      <span class="brand__name" data-brand>True You</span>
+      <p class="muted" style="margin-top:10px">Loud. Soft. Shiny. Whatever you are today. Made with joy for women who take up space.</p>
+      <form class="inline-form" data-signup="newsletter" style="max-width:420px">
+        <input type="email" name="email" placeholder="Your email" required aria-label="Email">
+        <button class="btn btn--sm btn--pink">Join</button>
+      </form>
+    </div>
+    <div><h4>Shop</h4><ul><li><a href="shop.html?cat=wear">Wear</a></li><li><a href="shop.html?cat=hair">Hair</a></li><li><a href="shop.html?cat=shine">Shine</a></li><li><a href="shop.html?cat=glow">Glow</a></li></ul></div>
+    <div><h4>Play</h4><ul><li><a href="quiz.html?q=era">80s icon quiz</a></li><li><a href="quiz.html?q=colorway">Colorway quiz</a></li><li><a href="quiz.html?q=hair">Hair check-in</a></li><li><a href="coming-soon.html">Vote on drops</a></li></ul></div>
+    <div><h4>Brand</h4><ul><li><a href="about.html">Bella's story</a></li><li><a href="about.html#faq">FAQ</a></li><li><a href="about.html#contact">Contact</a></li><li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram ↗</a></li></ul></div>
+  </div>
+  <div class="wrap legal">© <span data-year></span> <span data-brand>True You</span>. Sizes XS–3X. Big hair welcome.</div>
+</footer>
+
+<nav class="dock" aria-label="Quick actions">
+  <a href="shop.html"><span class="ico">🛍️</span>Shop</a>
+  <a href="quiz.html"><span class="ico">📼</span>Quiz</a>
+  <button type="button" data-cart-open><span class="ico">👜</span>Bag<span class="badge" data-cart-count>0</span></button>
+</nav>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script>document.querySelectorAll('[data-year]').forEach(n => n.textContent = new Date().getFullYear());</script>
+</body>
+</html>
