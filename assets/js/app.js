@@ -382,6 +382,7 @@
     // pre-apply the launch code on launch day if nothing else is set
     if (isLaunchDay() && !promoInfo() && C.promoCodes[C.surprise.code]) store.set(PROMO_KEY, C.surprise.code);
     render();
+    document.addEventListener('ty:refresh', render); // single-page previews re-render on navigation
 
     form.addEventListener('submit', async e => {
       e.preventDefault();
