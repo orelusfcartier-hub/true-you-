@@ -1,226 +1,253 @@
 /* =========================================================
-   Demo data for the True You Communities prototype.
-   Everything here is sample content — no backend, no API.
-   Swap these arrays for real listings when the CMS lands.
+   True You — content. Products, drops, quizzes, FAQ, ticker.
+   Add an object to any array and it shows up on the site.
+   Product photos: assets/media/products/<id>.jpg (optional;
+   the retro tile shows until the photo exists).
    ========================================================= */
 
-/* Stock photo URLs. If a photo can't load (offline preview, blocked
-   network), the .ph frame keeps its gradient and label so the layout
-   never looks broken. See site.js → wirePhotos(). */
-const IMG = {
-  heroExterior: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1600&q=70',
-  heroPorch:    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=70',
-  land:         'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1400&q=70',
-  build:        'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1400&q=70',
-  street:       'https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1400&q=70',
-  unitA:        'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=70',
-  unitB:        'https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=70',
-  unitC:        'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=70',
-  unitD:        'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=70',
-  unitE:        'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=70',
-  unitF:        'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=70',
-  kitchen:      'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?auto=format&fit=crop&w=1200&q=70',
-  triplexA:     'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1400&q=70',
-  triplexB:     'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1400&q=70',
-  triplexC:     'https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1400&q=70',
-  triplexD:     'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1400&q=70',
-  gather:       'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1400&q=70',
-  workshop:     'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1400&q=70',
-  garden:       'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1400&q=70',
-  court:        'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1400&q=70',
-  kids:         'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=1400&q=70',
-  safety:       'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1400&q=70',
-  kitBag:       'https://images.unsplash.com/photo-1603398938378-e54eab446dde?auto=format&fit=crop&w=1200&q=70',
-  water:        'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=1200&q=70',
-  training:     'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1400&q=70',
-  team:         'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=70'
-};
-
-/* ---------------- rental units ---------------- */
-const UNITS = [
+/* Retro tiles: each product gets a gradient + an emoji "sticker"
+   so cards look designed even before real photos land. */
+window.PRODUCTS = [
   {
-    id: 'ce-a', name: 'Cedar Row · Unit A', community: 'Cedar Row',
-    city: 'Lakeland, FL', beds: 2, baths: 2, sqft: 1080, rent: 1795,
-    status: 'available', available: 'Now', floor: 'Ground floor',
-    img: IMG.unitA, label: 'Unit A · living room',
-    tags: ['Corner unit', 'Private patio', 'W/D in unit'],
-    blurb: 'Ground-floor corner with a wrap of south light, a fenced patio, and a straight walk to the Commons.',
-    amenities: ['In-unit washer/dryer', 'Quartz counters', 'Fenced patio', 'Covered parking (1)', 'Smart lock + video doorbell', 'Pet friendly (2 max)']
+    id: 'windbreaker-sunset', name: 'The Sunset Windbreaker', cat: 'wear',
+    price: 78, compareAt: 95, badge: 'LAUNCH DROP',
+    colorways: ['Sorrel Red', 'Guava Pink', 'Sea Grape'], sizes: ['XS', 'S', 'M', 'L', 'XL', '2X', '3X'],
+    tile: { from: '#ff2d95', to: '#ff9d00', icon: '🧥' },
+    blurb: 'Color-block nylon, cropped just enough, with a hood that actually fits over big hair.',
+    details: ['Water-resistant nylon shell', 'Oversized hood, satin-lined', 'Reflective piping on the sleeves', 'Sizes XS to 3X, cut for hips']
   },
   {
-    id: 'ce-b', name: 'Cedar Row · Unit B', community: 'Cedar Row',
-    city: 'Lakeland, FL', beds: 3, baths: 2, sqft: 1340, rent: 2150,
-    status: 'available', available: 'Sep 1', floor: 'Upper floor',
-    img: IMG.unitB, label: 'Unit B · great room',
-    tags: ['Top floor', 'Balcony', 'Vaulted ceiling'],
-    blurb: 'Three bedrooms up top with vaulted ceilings and a balcony that looks over the shared green.',
-    amenities: ['In-unit washer/dryer', 'Balcony', 'Vaulted ceilings', 'Covered parking (2)', 'Smart thermostat', 'Storage locker']
+    id: 'tee-true', name: '"TRUE" Chrome Tee', cat: 'wear',
+    price: 36, badge: 'BEST SELLER',
+    colorways: ['Black', 'Hot Pink', 'Electric Blue'], sizes: ['XS', 'S', 'M', 'L', 'XL', '2X', '3X'],
+    tile: { from: '#7b2cff', to: '#19e6ff', icon: '👕' },
+    blurb: 'Heavyweight cotton with a puffy chrome print. Wear it with everything, wash it a hundred times.',
+    details: ['100% ring-spun cotton, 220 gsm', 'Puff chrome print', 'Relaxed unisex fit', 'Pre-shrunk']
   },
   {
-    id: 'ce-c', name: 'Cedar Row · Unit C', community: 'Cedar Row',
-    city: 'Lakeland, FL', beds: 1, baths: 1, sqft: 720, rent: 1395,
-    status: 'leased', available: 'Waitlist', floor: 'Ground floor',
-    img: IMG.unitC, label: 'Unit C · studio kitchen',
-    tags: ['Efficient', 'Garden access'],
-    blurb: 'The one-bedroom end unit — small footprint, big kitchen, door straight into the garden beds.',
-    amenities: ['In-unit washer/dryer', 'Garden plot included', 'Covered parking (1)', 'Smart lock']
+    id: 'scrunchie-set', name: 'Big Hair Scrunchie Trio', cat: 'hair',
+    price: 24, badge: 'GENTLE ON CURLS',
+    colorways: ['Sherbet Mix', 'Night Neon'], sizes: [],
+    tile: { from: '#fff01f', to: '#ff2d95', icon: '🎀' },
+    blurb: 'Three satin-lined jumbo scrunchies. No snags, no dents, no drama. Made for curls, coils and locs.',
+    details: ['Satin lining, zero friction', 'Jumbo elastic for thick hair', 'Three per set', 'Machine washable']
   },
   {
-    id: 'ma-a', name: 'Marigold Court · Unit A', community: 'Marigold Court',
-    city: 'Ocala, FL', beds: 2, baths: 2, sqft: 1120, rent: 1690,
-    status: 'available', available: 'Now', floor: 'Ground floor',
-    img: IMG.unitD, label: 'Unit A · dining',
-    tags: ['ADA accessible', 'Zero-step entry'],
-    blurb: 'Zero-step entry, 36-inch doorways, and a roll-in shower — accessible without looking clinical.',
-    amenities: ['Zero-step entry', 'Roll-in shower', 'Lever hardware', 'In-unit washer/dryer', 'Covered parking (1)', 'Pet friendly']
+    id: 'bonnet-satin', name: 'Sleep Loud Satin Bonnet', cat: 'hair',
+    price: 22,
+    colorways: ['Hot Pink', 'Ultraviolet', 'Cyan'], sizes: ['Regular', 'XL for locs'],
+    tile: { from: '#ff2d95', to: '#7b2cff', icon: '🌙' },
+    blurb: 'Double-layer satin, wide band that stays put, and a neon lightning bolt so it looks cute on purpose.',
+    details: ['Double-layer charmeuse satin', 'Adjustable wide band', 'XL fits locs and braids', 'Hand wash']
   },
   {
-    id: 'ma-b', name: 'Marigold Court · Unit B', community: 'Marigold Court',
-    city: 'Ocala, FL', beds: 3, baths: 2.5, sqft: 1480, rent: 2295,
-    status: 'available', available: 'Oct 15', floor: 'Two-story',
-    img: IMG.unitE, label: 'Unit B · stairwell',
-    tags: ['Townhome style', 'Home office nook'],
-    blurb: 'Two-story townhome layout with an office nook on the landing and a two-car pad out front.',
-    amenities: ['Office nook', 'Half bath down', 'In-unit washer/dryer', 'Two-car pad', 'Smart thermostat', 'Storage locker']
+    id: 'hoops-jumbo', name: 'Doorknocker Hoops', cat: 'shine',
+    price: 28, badge: 'ICONIC',
+    colorways: ['Gold', 'Silver'], sizes: ['Medium (50mm)', 'Jumbo (70mm)'],
+    tile: { from: '#ffb800', to: '#fff01f', icon: '⭕' },
+    blurb: 'Bamboo-style hoops, lightweight enough for all day, loud enough for all night.',
+    details: ['Hypoallergenic, nickel-free', '18k gold or rhodium plating', 'Secure latch back', 'Comes in a tiny cassette case']
   },
   {
-    id: 'ma-c', name: 'Marigold Court · Unit C', community: 'Marigold Court',
-    city: 'Ocala, FL', beds: 2, baths: 1, sqft: 940, rent: 1550,
-    status: 'soon', available: 'Nov 1', floor: 'Upper floor',
-    img: IMG.unitF, label: 'Unit C · bedroom',
-    tags: ['Pre-lease open', 'Treetop view'],
-    blurb: 'Pre-leasing now. Upper unit tucked under the oaks with a screened sleeping porch.',
-    amenities: ['Screened porch', 'In-unit washer/dryer', 'Covered parking (1)', 'Smart lock']
+    id: 'lipgloss-glossytalk', name: 'Glossy Talk Lip Gloss', cat: 'glow',
+    price: 16, badge: 'NEW',
+    colorways: ['Mango Glass', 'Hibiscus', 'Clear Shine'], sizes: [],
+    tile: { from: '#ff6b6b', to: '#ffb800', icon: '💋' },
+    blurb: 'High shine, no stick. Made for deep skin tones first, not as an afterthought.',
+    details: ['Non-sticky formula', 'Vitamin E + coconut oil', 'Sheer tint, mirror finish', 'Cruelty-free']
   },
   {
-    id: 'wi-a', name: 'Willow Bend · Unit A', community: 'Willow Bend',
-    city: 'Savannah, GA', beds: 2, baths: 2, sqft: 1060, rent: 1875,
-    status: 'available', available: 'Now', floor: 'Ground floor',
-    img: IMG.kitchen, label: 'Unit A · kitchen',
-    tags: ['New build', 'Solar-ready'],
-    blurb: 'First delivery at Willow Bend — everything new, panel pre-wired for rooftop solar.',
-    amenities: ['Solar-ready panel', 'Induction range', 'In-unit washer/dryer', 'EV-ready outlet', 'Covered parking (1)']
+    id: 'bucket-hat', name: 'Boombox Bucket Hat', cat: 'wear',
+    price: 32,
+    colorways: ['Sea Grape', 'Neon Yellow', 'Black'], sizes: ['S/M', 'L/XL'],
+    tile: { from: '#19e6ff', to: '#7b2cff', icon: '🧢' },
+    blurb: 'Reversible: bright side out for the day, black side out when you feel mysterious.',
+    details: ['Reversible twill', 'Embroidered boombox', 'Two sizes', 'Packs flat']
   },
   {
-    id: 'wi-b', name: 'Willow Bend · Unit B', community: 'Willow Bend',
-    city: 'Savannah, GA', beds: 3, baths: 2, sqft: 1390, rent: 2380,
-    status: 'soon', available: 'Dec 1', floor: 'Upper floor',
-    img: IMG.unitB, label: 'Unit B · living',
-    tags: ['Pre-lease open', 'Corner windows'],
-    blurb: 'Corner windows on three sides, and the only unit with a direct view of the activity center lawn.',
-    amenities: ['Corner windows', 'Balcony', 'In-unit washer/dryer', 'Covered parking (2)', 'Smart thermostat']
+    id: 'fanny-pack', name: 'Hands-Free Fanny Pack', cat: 'shine',
+    price: 42,
+    colorways: ['Hot Pink', 'Cyan'], sizes: [],
+    tile: { from: '#ff2d95', to: '#19e6ff', icon: '👝' },
+    blurb: 'Holographic, water-resistant, big enough for a phone, gloss, cards and your edge brush.',
+    details: ['Holographic PU', 'Adjustable strap to 52"', 'Two zip pockets', 'Wipe clean']
   },
   {
-    id: 'wi-c', name: 'Willow Bend · Unit C', community: 'Willow Bend',
-    city: 'Savannah, GA', beds: 1, baths: 1, sqft: 760, rent: 1425,
-    status: 'available', available: 'Now', floor: 'Ground floor',
-    img: IMG.unitD, label: 'Unit C · interior',
-    tags: ['Live/work', 'Street entry'],
-    blurb: 'Live/work end unit with its own street door — zoned for a quiet shopfront or studio.',
-    amenities: ['Separate street entry', 'Live/work zoning', 'In-unit washer/dryer', 'Utility sink', 'Covered parking (1)']
+    id: 'sweatshirt-crew', name: 'True You Crewneck', cat: 'wear',
+    price: 64, compareAt: 72,
+    colorways: ['Sorrel Red', 'Lavender', 'Cream'], sizes: ['XS', 'S', 'M', 'L', 'XL', '2X', '3X'],
+    tile: { from: '#b91d5e', to: '#ff2d95', icon: '✨' },
+    blurb: 'Brushed fleece, dropped shoulder, retro varsity letters. The one you steal back from your cousin.',
+    details: ['400 gsm brushed fleece', 'Dropped shoulder', 'Chenille varsity patch', 'Sizes XS to 3X']
+  },
+  {
+    id: 'sticker-pack', name: 'Neon Sticker Pack', cat: 'shine',
+    price: 9,
+    colorways: [], sizes: [],
+    tile: { from: '#fff01f', to: '#19e6ff', icon: '⚡' },
+    blurb: 'Twelve holographic stickers: cassettes, lightning bolts, a boombox, and one that just says TRUE.',
+    details: ['12 die-cut stickers', 'Waterproof vinyl', 'Laptop and water-bottle safe']
+  },
+  {
+    id: 'body-shimmer', name: 'Gold Hour Body Shimmer', cat: 'glow',
+    price: 26, badge: 'NEW',
+    colorways: ['Gold', 'Rose Gold'], sizes: [],
+    tile: { from: '#ffb800', to: '#ff6b6b', icon: '🌟' },
+    blurb: 'Shea-based shimmer oil that shows up on melanin. Shoulders, collarbones, legs, everything.',
+    details: ['Shea + jojoba base', 'Fine-milled mica', 'Light coconut scent', '100 ml pump']
+  },
+  {
+    id: 'socks-neon', name: 'Slouch Socks (2 pack)', cat: 'wear',
+    price: 18,
+    colorways: ['Pink + Cyan', 'Yellow + Purple'], sizes: ['One size'],
+    tile: { from: '#7b2cff', to: '#fff01f', icon: '🧦' },
+    blurb: 'Scrunch them, stack them, wear them with heels if you dare.',
+    details: ['Cotton blend', 'Extra-long slouch cuff', 'Two pairs']
   }
 ];
 
-/* ---------------- triplexes for sale ---------------- */
-const TRIPLEXES = [
+window.CATEGORIES = [
+  { id: 'all',   label: 'Everything' },
+  { id: 'wear',  label: 'Wear' },
+  { id: 'hair',  label: 'Hair' },
+  { id: 'shine', label: 'Shine' },
+  { id: 'glow',  label: 'Glow' }
+];
+
+/* ---------------- upcoming products ---------------- */
+window.UPCOMING = [
   {
-    id: 'tx-01', name: 'The Cedar', community: 'Cedar Row',
-    city: 'Lakeland, FL', price: 749000, status: 'available',
-    sqft: 3140, lot: '0.28 ac', built: 2025, img: IMG.triplexA,
-    label: 'The Cedar · street view',
-    mix: '2BR + 3BR + 1BR', rentRoll: 5340, expenses: 1580, capRate: 6.0,
-    tags: ['Turnkey', 'Tenants in place'],
-    blurb: 'Our flagship plan: three units, three private entries, one shared green. Delivered leased.',
-    highlights: ['All three units leased at delivery', 'Impact windows + 30-yr architectural shingle', 'Separately metered water, power, and internet', 'Shared green with grill pad and mail kiosk']
+    id: 'up-jacket', name: 'The Varsity Jacket', eta: 'October', stage: 'In sampling',
+    tile: { from: '#ff2d95', to: '#7b2cff', icon: '🏆' },
+    blurb: 'Wool body, satin sleeves, a chenille "T" on the chest. The big one.',
+    votes: 312
   },
   {
-    id: 'tx-02', name: 'The Marigold', community: 'Marigold Court',
-    city: 'Ocala, FL', price: 689000, status: 'available',
-    sqft: 3540, lot: '0.31 ac', built: 2025, img: IMG.triplexB,
-    label: 'The Marigold · front elevation',
-    mix: '2BR + 3BR + 2BR', rentRoll: 5535, expenses: 1610, capRate: 6.8,
-    tags: ['ADA ground unit', 'Best cap rate'],
-    blurb: 'Wider lot, accessible ground unit, and the strongest pro-forma of the current release.',
-    highlights: ['Ground unit built to full ADA spec', 'Two-car pad per unit', 'Pre-wired for solar and EV', 'Ten-year structural warranty']
+    id: 'up-edge', name: 'Edge Control That Behaves', eta: 'October', stage: 'Testing formulas',
+    tile: { from: '#19e6ff', to: '#fff01f', icon: '💫' },
+    blurb: 'Strong hold, no flaking, no white cast, smells like vanilla and soursop.',
+    votes: 540
   },
   {
-    id: 'tx-03', name: 'The Willow', community: 'Willow Bend',
-    city: 'Savannah, GA', price: 812000, status: 'soon',
-    sqft: 3210, lot: '0.26 ac', built: 2026, img: IMG.triplexC,
-    label: 'The Willow · rendering',
-    mix: '2BR + 3BR + 1BR live/work', rentRoll: 5680, expenses: 1690, capRate: 5.9,
-    tags: ['Reserving now', 'Live/work unit'],
-    blurb: 'Corner parcel across from the Willow Bend activity center. Live/work end unit included.',
-    highlights: ['Live/work end unit with street door', 'Faces the activity center lawn', 'Solar-ready with 200A service', 'Reservation holds price through close']
+    id: 'up-cassette', name: 'Mixtape Vol. 1 (the playlist + the merch)', eta: 'November', stage: 'Tracklist locked',
+    tile: { from: '#fff01f', to: '#ff2d95', icon: '📼' },
+    blurb: 'A real cassette with a real playlist, plus a matching tee. Soca, dancehall, freestyle, all the joy.',
+    votes: 201
   },
   {
-    id: 'tx-04', name: 'The Juniper', community: 'Cedar Row',
-    city: 'Lakeland, FL', price: 724000, status: 'sold',
-    sqft: 3080, lot: '0.25 ac', built: 2024, img: IMG.triplexD,
-    label: 'The Juniper · rear yard',
-    mix: '2BR + 2BR + 2BR', rentRoll: 5190, expenses: 1540, capRate: 6.1,
-    tags: ['Sold Mar 2026'],
-    blurb: 'Sold to a first-time small-multifamily buyer. Shown here as a reference build.',
-    highlights: ['Identical unit mix on all three floors', 'Closed 41 days from reservation', 'Managed by our in-house team post-close']
+    id: 'up-leggings', name: 'High-Rise Neon Leggings', eta: 'November', stage: 'Fit testing',
+    tile: { from: '#7b2cff', to: '#19e6ff', icon: '🩰' },
+    blurb: 'Squat-proof, waist that stays up, colors that glow under blacklight.',
+    votes: 428
+  },
+  {
+    id: 'up-perfume', name: 'Golden Hour Eau de Parfum', eta: 'Holiday', stage: 'Bottle design',
+    tile: { from: '#ffb800', to: '#ff6b6b', icon: '🌺' },
+    blurb: 'Warm, sweet, a little bit of sea air. Bella has been chasing this scent for two years.',
+    votes: 689
   }
 ];
 
-/* ---------------- activity centers ---------------- */
-const CENTERS = [
+/* ---------------- quizzes ---------------- */
+/* Each quiz: questions with options that score one or more result keys.
+   Results map to a product id so the quiz sells something. */
+window.QUIZZES = [
   {
-    name: 'The Commons at Cedar Row', city: 'Lakeland, FL', size: '2,400 sq ft',
-    status: 'Open', img: IMG.gather, label: 'The Commons',
-    blurb: 'The living room of the neighborhood — open seating, a teaching kitchen, and a covered porch that runs the length of the building.',
-    features: ['Teaching kitchen', 'Two bookable meeting rooms', 'Free Wi-Fi + printing', 'Covered porch with fans', 'Tool library']
+    id: 'era', title: 'Which 80s icon energy are you?', emoji: '📼',
+    intro: 'Six questions. Zero wrong answers. Big reveal at the end.',
+    questions: [
+      { q: 'Your alarm goes off. First move?', a: [
+        { t: 'Full playlist, full volume, dancing while brushing my teeth', s: { pop: 2, glam: 1 } },
+        { t: 'Snooze, then a very dramatic stretch', s: { glam: 2 } },
+        { t: 'Up, moving, plans already made', s: { boss: 2 } },
+        { t: 'Already outside, don\'t ask', s: { rebel: 2 } } ] },
+      { q: 'Pick a color to wear head to toe.', a: [
+        { t: 'Hot pink', s: { pop: 2 } }, { t: 'Gold', s: { glam: 2 } },
+        { t: 'Electric blue', s: { boss: 2 } }, { t: 'Black with one neon thing', s: { rebel: 2 } } ] },
+      { q: 'Your hair today is…', a: [
+        { t: 'Big. Bigger. Biggest.', s: { pop: 2 } }, { t: 'Slicked, sculpted, edges immaculate', s: { glam: 2 } },
+        { t: 'Braids, protective, ready for the week', s: { boss: 2 } }, { t: 'Whatever it woke up as, and it\'s serving', s: { rebel: 2 } } ] },
+      { q: 'A song comes on at the cookout and you…', a: [
+        { t: 'Start the line dance', s: { pop: 2 } }, { t: 'Get the camera out first', s: { glam: 2 } },
+        { t: 'Take over the aux', s: { boss: 2 } }, { t: 'Dance like nobody is filming (somebody is)', s: { rebel: 2 } } ] },
+      { q: 'Your bag always has…', a: [
+        { t: 'Gloss, gum, and glitter', s: { pop: 1, glam: 1 } }, { t: 'A mirror and an opinion', s: { glam: 2 } },
+        { t: 'A charger, a plan B, and snacks for everybody', s: { boss: 2 } }, { t: 'Sunglasses. That\'s it.', s: { rebel: 2 } } ] },
+      { q: 'Your ideal Saturday ends…', a: [
+        { t: 'On a dance floor', s: { pop: 2 } }, { t: 'At a rooftop with a view', s: { glam: 2 } },
+        { t: 'Hosting everybody at mine', s: { boss: 2 } }, { t: 'Somewhere I didn\'t plan to be', s: { rebel: 2 } } ] }
+    ],
+    results: {
+      pop:   { title: 'Pop Princess', emoji: '🎀', text: 'Loud joy, big hair, a soundtrack for everything. People feel better when you walk in and you know it.', product: 'windbreaker-sunset' },
+      glam:  { title: 'Glamour Queen', emoji: '💎', text: 'You do not do "casual". Gold hoops at breakfast, gloss before the gym. It\'s not extra, it\'s standard.', product: 'hoops-jumbo' },
+      boss:  { title: 'Power Suit', emoji: '📎', text: 'Shoulder pads energy. You run the group chat, the plans, and probably a business. Your calm is the flex.', product: 'sweatshirt-crew' },
+      rebel: { title: 'New Wave Rebel', emoji: '⚡', text: 'One color, one rule: yours. You like things a little off-beat and you make them look intentional.', product: 'bucket-hat' }
+    }
   },
   {
-    name: 'Marigold Workshop', city: 'Ocala, FL', size: '1,800 sq ft',
-    status: 'Open', img: IMG.workshop, label: 'Marigold Workshop',
-    blurb: 'A maker space and after-school room in one. Benches by day, homework tables by afternoon.',
-    features: ['Shared workbenches', 'After-school room', 'Quiet study booths', 'Bike repair stand', 'Weekly repair café']
+    id: 'colorway', title: 'Find your colorway', emoji: '🌈',
+    intro: 'We name our colors after the good stuff. Let\'s find yours.',
+    questions: [
+      { q: 'Pick a drink.', a: [
+        { t: 'Sorrel, extra ginger', s: { sorrel: 2 } }, { t: 'Fresh mango juice', s: { mango: 2 } },
+        { t: 'Something blue with an umbrella', s: { seagrape: 2 } }, { t: 'Guava anything', s: { guava: 2 } } ] },
+      { q: 'Pick a time of day.', a: [
+        { t: 'Golden hour', s: { mango: 2 } }, { t: 'Midnight', s: { seagrape: 2 } },
+        { t: 'Sunrise', s: { guava: 2 } }, { t: 'That red-sky moment before a storm', s: { sorrel: 2 } } ] },
+      { q: 'Your go-to nail color.', a: [
+        { t: 'Deep red', s: { sorrel: 2 } }, { t: 'Neon orange', s: { mango: 2 } },
+        { t: 'Purple chrome', s: { seagrape: 2 } }, { t: 'Baby pink, glossy', s: { guava: 2 } } ] },
+      { q: 'How do you want people to describe you?', a: [
+        { t: 'Bold', s: { sorrel: 2 } }, { t: 'Warm', s: { mango: 2 } },
+        { t: 'Mysterious', s: { seagrape: 2 } }, { t: 'Sweet, with range', s: { guava: 2 } } ] },
+      { q: 'Pick a sound.', a: [
+        { t: 'Steel pan', s: { mango: 2 } }, { t: 'A synth bass line', s: { seagrape: 2 } },
+        { t: 'A crowd singing the chorus back', s: { sorrel: 2 } }, { t: 'A cassette clicking into place', s: { guava: 2 } } ] }
+    ],
+    results: {
+      sorrel:   { title: 'Sorrel Red', emoji: '🌺', text: 'Deep, spicy, unforgettable. You wear red like it\'s a neutral.', product: 'sweatshirt-crew' },
+      mango:    { title: 'Mango Glass', emoji: '🥭', text: 'Warm and golden. Everything looks like sunset on you.', product: 'lipgloss-glossytalk' },
+      seagrape: { title: 'Sea Grape', emoji: '🔮', text: 'Purple-blue, cool, a little electric. You glow under neon.', product: 'bucket-hat' },
+      guava:    { title: 'Guava Pink', emoji: '🍬', text: 'Bright, sweet, and not to be underestimated.', product: 'scrunchie-set' }
+    }
   },
   {
-    name: 'Willow Bend Green', city: 'Savannah, GA', size: '0.6 acre',
-    status: 'Building', img: IMG.court, label: 'Willow Bend Green',
-    blurb: 'Half-court, shade structure, and a lawn sized for a hundred folding chairs. Opening with the second phase.',
-    features: ['Half-court + open lawn', 'Shade pavilion', 'Outdoor movie wall', 'Splash pad', 'Perimeter walking loop']
-  },
-  {
-    name: 'Cedar Row Garden Block', city: 'Lakeland, FL', size: '32 plots',
-    status: 'Open', img: IMG.garden, label: 'Garden Block',
-    blurb: 'Raised beds assigned by lottery each spring, plus a shared herb strip anyone can pick from.',
-    features: ['32 raised beds', 'Shared tool shed', 'Rain catchment', 'Compost line', 'Spring seed swap']
+    id: 'hair', title: 'What does your hair want this week?', emoji: '💇🏾‍♀️',
+    intro: 'Quick check-in with your crown.',
+    questions: [
+      { q: 'Wash day was…', a: [
+        { t: 'Yesterday, hydrated and happy', s: { protect: 1, big: 2 } }, { t: 'Last week (don\'t judge)', s: { protect: 2 } },
+        { t: 'A whole event, and now it\'s in a style', s: { sleep: 2 } }, { t: 'I have locs, wash day is a vibe', s: { sleep: 1, protect: 1 } } ] },
+      { q: 'This week you have…', a: [
+        { t: 'A party', s: { big: 2 } }, { t: 'Work, work, work', s: { protect: 2 } },
+        { t: 'Nothing planned and I like it', s: { sleep: 2 } }, { t: 'A trip', s: { protect: 1, sleep: 1 } } ] },
+      { q: 'Biggest hair annoyance?', a: [
+        { t: 'Dents from regular hair ties', s: { big: 2 } }, { t: 'Frizz by day two', s: { sleep: 2 } },
+        { t: 'Edges that won\'t cooperate', s: { protect: 2 } }, { t: 'None, I\'m the annoyance', s: { big: 1, sleep: 1 } } ] },
+      { q: 'Pick your bedtime ritual.', a: [
+        { t: 'Bonnet on, lights off', s: { sleep: 2 } }, { t: 'Pineapple it and pray', s: { big: 2 } },
+        { t: 'Silk pillowcase, no bonnet', s: { sleep: 1, protect: 1 } }, { t: 'What ritual?', s: { protect: 2 } } ] }
+    ],
+    results: {
+      big:     { title: 'Let it be BIG', emoji: '🦁', text: 'Your hair wants volume and zero dents. Jumbo satin scrunchies, loose styles, and lots of compliments.', product: 'scrunchie-set' },
+      sleep:   { title: 'Protect the style', emoji: '🌙', text: 'Your hair wants to be left alone in satin. Bonnet at night, minimal manipulation, maximum shine.', product: 'bonnet-satin' },
+      protect: { title: 'Low effort, high shine', emoji: '✨', text: 'Your hair wants an easy week. A satin bonnet, one good scrunchie, and edges handled (that product is coming soon).', product: 'bonnet-satin' }
+    }
   }
 ];
 
-/* ---------------- safety kits ---------------- */
-const KITS = [
-  {
-    name: 'Unit Kit', price: 'Included with every lease', img: IMG.kitBag,
-    label: 'Unit kit', badge: 'In every unit',
-    blurb: 'Mounted by the door of all three units before move-in day, and restocked every year at no charge.',
-    contents: ['Smoke + CO alarms (10-yr sealed)', '5 lb ABC fire extinguisher', 'Trauma-rated first aid kit', 'Emergency contact card', 'Flashlight + spare batteries', 'Water + gas shutoff tags']
-  },
-  {
-    name: 'Storm Kit', price: '$149', img: IMG.water,
-    label: 'Storm kit', badge: 'Most requested',
-    blurb: 'The 72-hour bag for hurricane season. Sized per household when you tell us how many people and pets.',
-    contents: ['72 hrs water + purification tabs', 'Shelf-stable food, 3 days', 'Hand-crank radio + charger', 'Document dry bag', 'N95s + work gloves + tarp', 'Pet supply pouch']
-  },
-  {
-    name: 'Block Cache', price: 'Funded per community', img: IMG.safety,
-    label: 'Block cache', badge: 'Shared resource',
-    blurb: 'A locked cabinet at every activity center, opened by trained volunteer neighbors when the power goes out.',
-    contents: ['AED + bleeding control kit', 'Generator + fuel rotation', 'Bulk water and cots', 'Two-way radio set', 'Printed neighbor roster', 'Cooling and warming supplies']
-  }
+/* ---------------- FAQ ---------------- */
+window.FAQ = [
+  { q: 'When does my order ship?', a: 'Launch orders ship within 5 business days. You get a tracking number by email the moment it leaves.' },
+  { q: 'What is the launch-day surprise?', a: 'If you order on launch day, something extra goes in your box. We are not saying what. That is the point.' },
+  { q: 'What sizes do you carry?', a: 'XS to 3X on everything with a size. Our fits are cut for hips, chest and big hair, in that order.' },
+  { q: 'Do you ship outside the US?', a: 'Yes: Canada, the UK and the Caribbean at launch, with more countries on the way. Rates show at checkout.' },
+  { q: 'Returns?', a: '30 days, unworn, for exchange or store credit. Hair and lip products are final sale for hygiene reasons.' },
+  { q: 'Is the gloss made for deep skin tones?', a: 'It was made on deep skin tones. Every shade was tested on the founder and her friends first.' }
 ];
 
-/* ---------------- events ---------------- */
-const EVENTS = [
-  { date: 'Aug 9',  title: 'Repair Café',              place: 'Marigold Workshop',        note: 'Bring one broken thing.' },
-  { date: 'Aug 16', title: 'Hurricane Prep Walk-Thru', place: 'The Commons at Cedar Row', note: 'Free storm kit checklist.' },
-  { date: 'Aug 23', title: 'Movie on the Green',       place: 'Willow Bend Green',        note: 'Sunset. Bring a chair.' },
-  { date: 'Sep 6',  title: 'CPR + Stop the Bleed',     place: 'The Commons at Cedar Row', note: '2 hrs, certification included.' },
-  { date: 'Sep 13', title: 'Garden Plot Lottery',      place: 'Cedar Row Garden Block',   note: 'Residents first, then waitlist.' },
-  { date: 'Sep 27', title: 'New Owner Orientation',    place: 'Marigold Workshop',        note: 'For buyers closing this fall.' }
+/* ---------------- ticker lines ---------------- */
+window.TICKER = [
+  'LAUNCH DAY', 'FREE SHIPPING OVER $75', 'BIG HAIR WELCOME', 'SIZES XS TO 3X',
+  'ORDER TODAY FOR THE SURPRISE', 'NEW WAVE, SAME YOU', 'TAKE THE QUIZ', 'MADE WITH JOY'
 ];

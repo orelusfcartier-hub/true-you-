@@ -1,218 +1,178 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>True You Communities — land, triplexes, and neighborhoods built to be lived in</title>
-<meta name="description" content="We buy land, build triplexes, rent them by the unit, sell them to owners, and put an activity center and safety kits in every community.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231f6f52'/><text x='50' y='70' font-size='58' font-family='sans-serif' font-weight='bold' fill='%23fff' text-anchor='middle'>T</text></svg>">
-<link rel="stylesheet" href="assets/css/styles.css">
-<link rel="stylesheet" media="(max-width: 900px)" href="assets/css/mobile.css">
+<title>True You — the launch drop</title>
+<meta name="description" content="Fun, loud, 80s-flavored pieces made for you. Launch day surprise for every order placed today.">
+<meta name="theme-color" content="#14052e">
+<meta property="og:title" content="True You — the launch drop">
+<meta property="og:description" content="Fun, loud, 80s-flavored pieces made for you. Launch day surprise for every order placed today.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2314052e'/><text x='50' y='72' font-size='60' font-family='Arial Black,sans-serif' font-weight='900' fill='%23ff2d95' text-anchor='middle'>T</text><circle cx='78' cy='24' r='9' fill='%23fff01f'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&family=Monoton&family=Outfit:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="assets/css/retro.css">
 </head>
 <body>
 
+<div class="surprise-bar" data-show-when="today" hidden>
+  <span>🎁 IT'S LAUNCH DAY! Every order placed today gets a surprise in the box.</span>
+  <a href="shop.html">Shop now →</a>
+</div>
+
 <header class="site-header">
   <div class="wrap nav">
-    <a class="brand" href="index.html">
-      <span class="brand__mark">T</span>
-      <span class="brand__name">True You<small>Communities</small></span>
-    </a>
-    <button class="icon-btn nav__toggle" data-nav-toggle aria-expanded="false" aria-label="Menu">☰</button>
-    <nav class="nav__links" data-nav-links>
-      <a href="index.html">Home</a>
-      <a href="rentals.html">Rent a unit</a>
-      <a href="triplexes.html">Buy a triplex</a>
-      <a href="community.html">Community</a>
-      <a href="safety.html">Safety kits</a>
-      <a href="contact.html">Contact</a>
+    <a class="brand" href="index.html" aria-label="True You home"><span class="brand__name" data-brand>True You</span></a>
+    <nav class="nav__links" aria-label="Main">
+      <a href="shop.html">Shop</a>
+      <a href="quiz.html">Quizzes</a>
+      <a href="coming-soon.html">Coming soon</a>
+      <a href="about.html">Bella</a>
     </nav>
     <div class="nav__actions">
-      <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">☾</button>
-      <a class="btn btn--primary btn--sm" href="rentals.html">See what's open</a>
+      <button class="icon-btn" data-cart-open aria-label="Open your bag">🛍️<span class="badge" data-cart-count>0</span></button>
+      <button class="icon-btn nav__toggle" data-menu-toggle aria-expanded="false" aria-label="Menu">☰</button>
     </div>
   </div>
 </header>
 
+<div class="menu" data-menu aria-label="Menu">
+  <div class="menu__top"><span class="brand__name" data-brand>True You</span><button class="icon-btn" data-menu-close aria-label="Close menu">✕</button></div>
+  <ul class="menu__links">
+    <li><a href="index.html">Home <small>start here</small></a></li>
+    <li><a href="shop.html">Shop <small>the launch drop</small></a></li>
+    <li><a href="quiz.html">Quizzes <small>find your era</small></a></li>
+    <li><a href="coming-soon.html">Coming soon <small>vote on what's next</small></a></li>
+    <li><a href="about.html">Bella <small>the story + FAQ</small></a></li>
+  </ul>
+  <div class="menu__foot"><a class="btn btn--sm btn--white" href="shop.html">Shop the drop</a><a class="btn btn--sm btn--ghost" href="checkout.html">Checkout</a></div>
+</div>
+
+<div class="ticker" aria-hidden="true"><div class="ticker__track" data-ticker></div></div>
+
 <main>
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="wrap hero__grid">
-      <div>
-        <span class="eyebrow">Land · Triplexes · Neighbors</span>
-        <h1>We buy the land, build the triplex, and stay for the <span class="serif">neighborhood</span>.</h1>
-        <p class="hero__lede">
-          Three homes on one lot, each with its own door. Rent a unit, buy the whole building, or
-          just come to the activity center down the street. Every community we build gets a place to
-          gather and a safety kit in every kitchen.
-        </p>
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="rentals.html">Browse available units</a>
-          <a class="btn btn--ghost" href="triplexes.html">Buy a triplex →</a>
-        </div>
-        <div class="stat-row">
-          <div class="stat"><div class="stat__n">3</div><div class="stat__l">Communities in development</div></div>
-          <div class="stat"><div class="stat__n">27</div><div class="stat__l">Units planned by 2027</div></div>
-          <div class="stat"><div class="stat__n">4</div><div class="stat__l">Activity centers</div></div>
-          <div class="stat"><div class="stat__n">100%</div><div class="stat__l">Units with a safety kit</div></div>
-        </div>
+    <div class="hero__media" data-hero-media>
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/media/hero-poster.jpg">
+        <source src="assets/media/hero.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero__scan"></div>
+    <div class="hero__grid"></div>
+    <div class="hero__vhs"><span class="rec"></span>REC · LAUNCH</div>
+    <button class="icon-btn hero__sound" data-hero-sound aria-label="Unmute video">🔇</button>
+    <div class="wrap hero__content">
+      <div class="hero__badge">
+        <span class="sticker sticker--pink">Launch drop</span>
+        <span class="sticker sticker--cyan" data-show-when="today" hidden>Today only 🎁</span>
       </div>
-      <div class="hero__art">
-        <div class="ph ph--main ph--4x3" data-label="Cedar Row · exterior">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Modern triplex exterior" id="hero-img-1">
-        </div>
-        <div class="ph ph--inset ph--1x1" data-label="Interior">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Bright unit interior" id="hero-img-2">
-        </div>
+      <h1><span class="chrome">Be the</span><br><span class="neon">Truest</span><br><span class="chrome">You</span></h1>
+      <p class="lede" style="max-width:34ch">Big hair, bigger color, zero apologies. Our first drop is here and it's a whole mood.</p>
+
+      <div data-show-when="today" hidden>
+        <p style="font-weight:700;margin:0 0 6px">🎁 Order today and there's a surprise in your box.</p>
+      </div>
+      <div data-show-when="before" hidden>
+        <p style="font-weight:700;margin:0 0 8px">Launching <span data-launch-date></span>. Countdown is on:</p>
+        <div class="countdown" data-countdown></div>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn btn--pink" href="shop.html">Shop the drop</a>
+        <a class="btn btn--ghost" href="quiz.html">Take the quiz</a>
       </div>
     </div>
   </section>
 
-  <!-- ================= FOUR THINGS ================= -->
-  <section class="section section--alt">
+  <!-- SURPRISE -->
+  <section class="section section--tight" data-show-when="today" hidden>
     <div class="wrap">
-      <div class="reveal" style="max-width:62ch">
-        <span class="eyebrow">What we do</span>
-        <h2>Four things, on the same piece of land.</h2>
-        <p class="muted">Most builders stop at the certificate of occupancy. We're building the part
-        that comes after — the management, the gathering space, the preparedness.</p>
-      </div>
-      <div class="grid g-4 mt-3">
-        <div class="feature reveal">
-          <div class="feature__icon">🏡</div>
-          <h3>Rent by the unit</h3>
-          <p>Each triplex holds three separate homes. We lease them one at a time, manage them ourselves, and answer the phone.</p>
-          <a class="feature__link" href="rentals.html">See open units →</a>
-        </div>
-        <div class="feature reveal">
-          <div class="feature__icon">🔑</div>
-          <h3>Buy the building</h3>
-          <p>Buy a finished triplex with tenants in place — live in one unit and let the other two carry the note.</p>
-          <a class="feature__link" href="triplexes.html">See what's for sale →</a>
-        </div>
-        <div class="feature reveal">
-          <div class="feature__icon">🫂</div>
-          <h3>Activity centers</h3>
-          <p>Every community gets a real building to gather in: a kitchen, tables, Wi-Fi, and a door that's open.</p>
-          <a class="feature__link" href="community.html">Tour the spaces →</a>
-        </div>
-        <div class="feature reveal">
-          <div class="feature__icon">🧰</div>
-          <h3>Safety kits</h3>
-          <p>Alarms, extinguisher, first aid, and a 72-hour storm bag. Standard in every unit, restocked yearly.</p>
-          <a class="feature__link" href="safety.html">What's inside →</a>
-        </div>
+      <div class="surprise reveal">
+        <span class="surprise__spark" style="top:8px;right:14px">✨</span>
+        <span class="surprise__spark" style="bottom:4px;left:12px">🎉</span>
+        <span class="eyebrow">Launch day only</span>
+        <div class="surprise__title">Order today. Get the surprise.</div>
+        <p>Every order placed today ships with a mystery gift from the vault, a note from Bella, and first dibs on the next drop. We're not saying what the gift is. That's what makes it a surprise.</p>
+        <div class="surprise__code">CODE: <span data-surprise-code>LAUNCH</span> <button data-copy-code="LAUNCH" type="button">Copy</button></div>
+        <p style="margin:10px 0 0;font-size:.95rem">20% off today only. Ends at midnight, your time.</p>
       </div>
     </div>
   </section>
+  <section class="section section--tight" data-show-when="before" hidden>
+    <div class="wrap"><div class="surprise reveal">
+      <span class="eyebrow">Heads up</span>
+      <div class="surprise__title">Something extra for launch-day orders</div>
+      <p style="margin:0">On launch day only, every order ships with a surprise. Set an alarm. Tell your cousin.</p>
+    </div></div>
+  </section>
 
-  <!-- ================= LAND → HOMES ================= -->
+  <!-- SHOP PREVIEW -->
+  <section class="section section--yellow memphis">
+    <div class="wrap">
+      <div class="reveal"><span class="eyebrow">The drop</span><h2>Fresh out the <span class="outline">box</span></h2>
+      <p class="lede" style="max-width:52ch">Twelve pieces. Sizes XS to 3X. Satin where it matters, neon where it counts, and gloss that shows up on melanin.</p></div>
+      <div class="grid g-4 mt-3" data-products data-products-limit="4"></div>
+      <div class="btn-row mt-3"><a class="btn" href="shop.html">See all 12 pieces →</a></div>
+    </div>
+  </section>
+
+  <!-- QUIZ TEASER -->
+  <section class="section memphis">
+    <div class="wrap center">
+      <div class="reveal"><span class="cassette">📼</span>
+      <h2>Which 80s icon<br>energy are <span class="neon neon--cyan">you</span>?</h2>
+      <p class="lede" style="max-width:44ch;margin-inline:auto">Six questions, zero wrong answers, one very accurate result. Then we match you with your piece.</p>
+      <div class="btn-row" style="justify-content:center"><a class="btn btn--cyan" href="quiz.html?q=era">Play the quiz</a><a class="btn btn--ghost" href="quiz.html">All 3 quizzes</a></div></div>
+    </div>
+  </section>
+
+  <!-- COMING SOON -->
+  <section class="section section--cyan memphis">
+    <div class="wrap">
+      <div class="reveal"><span class="eyebrow">Coming soon</span><h2>What's next on the tape</h2>
+      <p class="lede" style="max-width:52ch">These are in the works right now. Vote for the ones you want first and we'll tell you the second they land.</p></div>
+      <div class="grid g-2 mt-3" data-upcoming data-upcoming-limit="2"></div>
+      <div class="btn-row mt-3"><a class="btn btn--white" href="coming-soon.html">See everything coming →</a></div>
+    </div>
+  </section>
+
+  <!-- BELLA -->
   <section class="section">
-    <div class="wrap split">
+    <div class="wrap about-grid">
+      <div class="portrait reveal float"><span class="big" aria-hidden="true">💁🏾‍♀️</span><img src="assets/media/bella.jpg" alt="Bella, founder of True You"></div>
       <div class="reveal">
-        <span class="eyebrow">The model</span>
-        <h2>Buy dirt. Build three doors. Keep the keys nearby.</h2>
-        <p class="muted">
-          We look for infill parcels and small acreage inside existing towns — places already served by
-          water, sewer, and a school bus route. Then we put up a triplex, and the density pays for
-          the parts a single-family lot could never afford: the commons, the garden block, the cache
-          of supplies for when the storm comes.
-        </p>
-        <div class="steps mt-2">
-          <div class="step">
-            <div><h3>Find and buy the land</h3><p>Infill lots and small acreage, zoned or rezonable for three units.</p></div>
-          </div>
-          <div class="step">
-            <div><h3>Build the triplex</h3><p>One roof, three private entries, separate meters, shared green.</p></div>
-          </div>
-          <div class="step">
-            <div><h3>Lease or sell</h3><p>Rent unit by unit, or sell the building to an owner who wants a tenant-funded mortgage.</p></div>
-          </div>
-          <div class="step">
-            <div><h3>Build the commons</h3><p>An activity center and a stocked safety cache before the last unit is leased.</p></div>
-          </div>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="ph ph--tall" data-label="Land acquisition" style="border-radius:24px;box-shadow:var(--shadow-lg)">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Open land at golden hour" id="land-img">
-        </div>
+        <span class="eyebrow">Meet Bella</span>
+        <h2>Built by a girl who was told she was <span class="neon">too much</span></h2>
+        <p class="lede">Too loud, too bright, too big-haired. Bella decided that was the brand. True You is for every woman who's ever shrunk herself to fit a room, and is done doing that.</p>
+        <p class="muted">Island roots, city polish, and a permanent playlist. The clothes are cut for real bodies, the hair stuff is made for real curls, and everything is tested on Bella and her friends first.</p>
+        <div class="btn-row"><a class="btn btn--ghost" href="about.html">Read the story</a></div>
       </div>
     </div>
   </section>
 
-  <!-- ================= FEATURED UNITS ================= -->
-  <section class="section section--alt">
-    <div class="wrap">
-      <div class="row between reveal">
-        <div style="max-width:52ch">
-          <span class="eyebrow">Now leasing</span>
-          <h2 class="mb-0">Open units this month</h2>
-        </div>
-        <a class="btn btn--ghost" href="rentals.html">All units &amp; filters</a>
-      </div>
-      <div class="grid g-3 mt-3" id="featured-units"></div>
+  <!-- INSTAGRAM -->
+  <section class="section section--pink memphis">
+    <div class="wrap center">
+      <div class="reveal"><span class="eyebrow">On the 'gram</span>
+      <h2>Come see the <span class="outline">chaos</span></h2>
+      <p class="lede" style="max-width:44ch;margin-inline:auto">Behind the scenes, try-ons, and the launch video in full. Tag us in your fit and we'll repost the best ones.</p>
+      <div class="btn-row" style="justify-content:center"><a class="btn btn--white" href="https://www.instagram.com/p/Dc88wRvjqXa/" target="_blank" rel="noopener">Watch the launch video ↗</a></div></div>
     </div>
   </section>
 
-  <!-- ================= FEATURED TRIPLEXES ================= -->
+  <!-- NEWSLETTER -->
   <section class="section">
-    <div class="wrap">
-      <div class="row between reveal">
-        <div style="max-width:52ch">
-          <span class="eyebrow">For sale</span>
-          <h2 class="mb-0">Triplexes on the market</h2>
-          <p class="muted mb-0 mt-1">Numbers shown are sample pro-formas for this prototype, not offers.</p>
-        </div>
-        <a class="btn btn--ghost" href="triplexes.html">See all buildings</a>
-      </div>
-      <div class="grid g-3 mt-3" id="featured-triplexes"></div>
-    </div>
-  </section>
-
-  <!-- ================= COMMUNITY ================= -->
-  <section class="section section--alt">
-    <div class="wrap">
-      <div class="row between reveal">
-        <div style="max-width:52ch">
-          <span class="eyebrow">Places to congregate</span>
-          <h2 class="mb-0">The activity centers</h2>
-          <p class="muted mb-0 mt-1">A neighborhood is a set of excuses to run into each other. We build the excuses.</p>
-        </div>
-        <a class="btn btn--ghost" href="community.html">Explore community</a>
-      </div>
-      <div class="grid g-3 mt-3" id="featured-centers"></div>
-    </div>
-  </section>
-
-  <!-- ================= SAFETY ================= -->
-  <section class="section">
-    <div class="wrap">
-      <div class="reveal" style="max-width:60ch">
-        <span class="eyebrow">Safety kits</span>
-        <h2>Every unit gets one. Every community gets a cache.</h2>
-        <p class="muted">Preparedness shouldn't be a thing you get around to. It ships with the keys.</p>
-      </div>
-      <div class="grid g-3 mt-3" id="featured-kits"></div>
-    </div>
-  </section>
-
-  <!-- ================= BANNER ================= -->
-  <section class="section--tight">
-    <div class="wrap">
-      <div class="banner reveal split">
-        <div>
-          <h2>Want in early?</h2>
-          <p>Tell us whether you're looking to rent, to buy, or to help run a community space —
-          and we'll put you on the list for the next release.</p>
-          <div class="row mt-2">
-            <a class="btn btn--primary" href="contact.html">Get on the list</a>
-            <a class="btn btn--ghost" href="community.html">See what's being built</a>
-          </div>
-        </div>
-        <div class="ph ph--16x9" data-label="Neighbors gathering" style="border-radius:18px">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Neighbors gathering outdoors" id="banner-img">
-        </div>
+    <div class="wrap center">
+      <div class="reveal" style="max-width:520px;margin-inline:auto">
+        <h2>Get on the <span class="neon neon--cyan">list</span></h2>
+        <p class="muted">Drops, restocks, and the occasional playlist. No spam, we're too busy for that.</p>
+        <form class="inline-form" data-signup="newsletter">
+          <input type="email" name="email" placeholder="Your email" required aria-label="Email">
+          <button class="btn btn--pink">Join</button>
+        </form>
       </div>
     </div>
   </section>
@@ -220,63 +180,54 @@
 </main>
 
 <footer class="site-footer">
-  <div class="wrap">
-    <div class="footer__grid">
-      <div>
-        <a class="brand" href="index.html" style="color:#fff">
-          <span class="brand__mark">T</span>
-          <span class="brand__name">True You<small style="color:#8ba398">Communities</small></span>
-        </a>
-        <p style="color:#8ba398;font-size:.92rem;margin-top:14px;max-width:34ch">
-          Land, triplexes, and the parts of a neighborhood that don't fit in a floor plan.
-        </p>
-        <form class="newsletter" data-demo-form="Prototype only — no email was collected.">
-          <input type="email" placeholder="you@email.com" aria-label="Email address" required>
-          <button class="btn btn--primary btn--sm" type="submit">Notify me</button>
-        </form>
-      </div>
-      <div>
-        <h4>Live here</h4>
-        <div class="footer__links">
-          <a href="rentals.html">Available units</a>
-          <a href="rentals.html">Floor plans</a>
-          <a href="contact.html">Join the waitlist</a>
-        </div>
-      </div>
-      <div>
-        <h4>Own here</h4>
-        <div class="footer__links">
-          <a href="triplexes.html">Triplexes for sale</a>
-          <a href="triplexes.html">Pro-forma numbers</a>
-          <a href="contact.html">Talk to us</a>
-        </div>
-      </div>
-      <div>
-        <h4>Community</h4>
-        <div class="footer__links">
-          <a href="community.html">Activity centers</a>
-          <a href="community.html">Events calendar</a>
-          <a href="safety.html">Safety kits</a>
-        </div>
-      </div>
+  <div class="wrap foot-grid">
+    <div>
+      <span class="brand__name" data-brand>True You</span>
+      <p class="muted" style="margin-top:10px">Loud. Soft. Shiny. Whatever you are today. Made with joy for women who take up space.</p>
+      <form class="inline-form" data-signup="newsletter" style="max-width:420px">
+        <input type="email" name="email" placeholder="Your email" required aria-label="Email">
+        <button class="btn btn--sm btn--pink">Join</button>
+      </form>
     </div>
-    <div class="footer__bottom">
-      <span>© 2026 True You Communities · Prototype</span>
-      <span class="demo-flag">◆ Demo site — sample content, no backend</span>
-    </div>
+    <div><h4>Shop</h4><ul><li><a href="shop.html?cat=wear">Wear</a></li><li><a href="shop.html?cat=hair">Hair</a></li><li><a href="shop.html?cat=shine">Shine</a></li><li><a href="shop.html?cat=glow">Glow</a></li></ul></div>
+    <div><h4>Play</h4><ul><li><a href="quiz.html?q=era">80s icon quiz</a></li><li><a href="quiz.html?q=colorway">Colorway quiz</a></li><li><a href="quiz.html?q=hair">Hair check-in</a></li><li><a href="coming-soon.html">Vote on drops</a></li></ul></div>
+    <div><h4>Brand</h4><ul><li><a href="about.html">Bella's story</a></li><li><a href="about.html#faq">FAQ</a></li><li><a href="about.html#contact">Contact</a></li><li><a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram ↗</a></li></ul></div>
   </div>
+  <div class="wrap legal">© <span data-year></span> <span data-brand>True You</span>. Sizes XS–3X. Big hair welcome.</div>
 </footer>
 
-<div class="m-cta"><a class="btn btn--primary" href="contact.html">Get on the list</a></div>
+<!-- Netlify Forms: these static definitions let Netlify's build bot register the
+     forms. app.js posts to them (see deliver()). Nothing here is visible. -->
+<div hidden aria-hidden="true">
+  <form name="order" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="order"><input name="bot-field">
+    <input name="order-id"><input name="placed-at"><input name="launch-day">
+    <input name="name"><input name="email"><input name="phone"><input name="address"><input name="city"><input name="zip"><input name="country"><input name="note">
+    <textarea name="items"></textarea><input name="promo"><input name="subtotal"><input name="discount"><input name="shipping"><input name="total">
+  </form>
+  <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="newsletter"><input name="bot-field"><input name="email"><input name="list">
+  </form>
+  <form name="notify" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="notify"><input name="bot-field"><input name="email"><input name="product"><input name="list">
+  </form>
+  <form name="ideas" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="ideas"><input name="bot-field"><input name="email"><textarea name="idea"></textarea><input name="list">
+  </form>
+  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="contact"><input name="bot-field"><input name="name"><input name="email"><textarea name="message"></textarea><input name="list">
+  </form>
+</div>
 
+<nav class="dock" aria-label="Quick actions">
+  <a href="shop.html"><span class="ico">🛍️</span>Shop</a>
+  <a href="quiz.html"><span class="ico">📼</span>Quiz</a>
+  <button type="button" data-cart-open><span class="ico">👜</span>Bag<span class="badge" data-cart-count>0</span></button>
+</nav>
+
+<script src="assets/js/config.js"></script>
 <script src="assets/js/data.js"></script>
-<script src="assets/js/site.js"></script>
-<script>
-  // hero + section photos come from the shared image map in data.js
-  document.getElementById('hero-img-1').src = IMG.heroExterior;
-  document.getElementById('hero-img-2').src = IMG.heroPorch;
-  document.getElementById('land-img').src = IMG.land;
-  document.getElementById('banner-img').src = IMG.gather;
-</script>
+<script src="assets/js/app.js"></script>
+<script>document.querySelectorAll('[data-year]').forEach(n => n.textContent = new Date().getFullYear());</script>
 </body>
 </html>
