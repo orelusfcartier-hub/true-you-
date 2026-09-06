@@ -1,8 +1,8 @@
 # True You — launch website
 
 A fun, loud, 80s-themed brand site: shop, cart, checkout, three quizzes, upcoming
-drops with voting, launch-day surprise, and a hero video. Static files only, so it
-runs anywhere (GitHub Pages, Netlify, Vercel, or a folder on your laptop).
+drops with voting, launch-day surprise, and a hero video. Static files only, built
+to deploy on **Netlify** (orders and sign-ups arrive through Netlify Forms).
 Designed for phones first.
 
 See `PLAN.md` for the thinking behind it.
@@ -42,18 +42,36 @@ and products show their designed retro tiles.
 
 The surprise copy and code live under `surprise` in the same file.
 
-## Going live (orders and sign-ups)
+## Deploy on Netlify
 
-Everything works out of the box: the cart is saved in the browser, checkout
-creates an order number, and the order confirmation opens a prefilled email to
-`orderEmail`. To make it hands-off, fill in any of these in `assets/js/config.js`:
+The repo is ready for Netlify as-is (`netlify.toml` is included, no build step).
+
+1. In Netlify: **Add new site → Import an existing project → GitHub → this repo.**
+   Build command: leave empty. Publish directory: `.` (already set in `netlify.toml`).
+2. Deploy. The site is live at the Netlify URL; add your domain under **Domain management**.
+3. Turn on email alerts: **Site configuration → Forms → Form notifications → Add notification → Email**,
+   pick the `order` form and your inbox. Repeat for `contact` if you want those too.
+
+That's it. Every order, newsletter sign-up, notify-me request, product idea and contact
+message shows up under **Forms** in the Netlify dashboard (and in your inbox if step 3 is on).
+Spam is filtered by the honeypot field plus Netlify's own filtering.
+
+The `order` form carries: order id, launch-day flag, customer details, the items, promo code,
+and totals. Reply to the customer with a payment link, or set `paymentLink` (below) to send
+them straight to a checkout page.
+
+Netlify's free plan includes 100 form submissions a month; Level 1 raises that if launch goes big.
+
+## Payments and alternatives
+
+`assets/js/config.js`:
 
 | Setting | What to put there |
 | --- | --- |
-| `paymentLink` | A Stripe Payment Link, Square checkout link, or PayPal.me link. Customers are sent there after placing the order. |
-| `orderEndpoint` | A form/webhook URL that accepts JSON (Formspree, Netlify Forms, Zapier, Make). Each order is POSTed there. |
-| `signupEndpoint` | Same idea for newsletter, notify-me, ideas and contact submissions. |
-| `orderEmail` | Where the fallback order email goes. |
+| `netlifyForms` | `true` (default). Set to `false` if you host somewhere else. |
+| `paymentLink` | A Stripe Payment Link, Square checkout link, or PayPal.me link. Customers are sent there right after placing the order. |
+| `orderEndpoint` / `signupEndpoint` | Optional URL that accepts JSON (Zapier, Make, Formspree), used if Netlify Forms is off or fails. |
+| `orderEmail` | Last-resort fallback: if nothing above accepts the submission, the visitor gets a prefilled order email to this address. |
 
 Promo codes are in `promoCodes`. Free-shipping threshold and flat rate are next to it.
 
@@ -73,6 +91,8 @@ quiz.html          three quizzes with shareable results and a product match
 coming-soon.html   upcoming drops with voting and notify-me
 about.html         Bella's story, how things are made, FAQ, contact
 checkout.html      bag review, promo codes, shipping form, confirmation + surprise
+404.html           styled not-found page
+netlify.toml       Netlify config: publish dir, clean URLs, caching headers
 assets/css/retro.css   the whole look, mobile first
 assets/js/app.js       cart, checkout, launch logic, quizzes, voting, forms, effects
 ```

@@ -2,8 +2,8 @@
 
 ## Goal
 A fully working, mobile-first brand website with a loud, happy 80s look.
-Static files only (no build step, no backend), so it can be hosted anywhere
-(GitHub Pages, Netlify, Vercel, a plain folder).
+Static files only (no build step, no backend), deployed on Netlify. Orders and
+sign-ups are collected by Netlify Forms, so there is no separate backend to run.
 
 ## Audience and voice
 Black women, many with Caribbean roots. The site speaks to them as friends:
@@ -34,16 +34,16 @@ shows a designed retro tile so nothing ever looks broken.
 - Cart: persistent (localStorage), slide-in drawer, quantities, promo codes,
   free-shipping progress bar, badge count in the nav.
 - Checkout: validates the form, creates an order number, stores the order,
-  shows a confirmation with the launch-day surprise, then (optional) sends the
-  order to `CONFIG.orderEndpoint` (Formspree / Netlify / any webhook) and/or
-  redirects to `CONFIG.paymentLink` (Stripe, Square, PayPal link).
-  Without either configured, it opens a prefilled email to `CONFIG.orderEmail`.
+  posts it to the Netlify `order` form (shows up in the Netlify dashboard and
+  your inbox), shows a confirmation with the launch-day surprise, and, if
+  `CONFIG.paymentLink` is set, sends the customer to Stripe / Square / PayPal.
+  If delivery fails it falls back to a prefilled email to `CONFIG.orderEmail`.
 - Launch day: `CONFIG.launchDate`. Before it: countdown. On the day: the
   surprise banner, the surprise checkout reveal, and the `LAUNCH` promo code.
   After it: the launch-day extras switch off automatically.
 - Quizzes: engine in `app.js`, content in `data.js`. Results map to products.
-- Notify-me / newsletter forms: post to `CONFIG.signupEndpoint` if set,
-  otherwise saved locally and acknowledged.
+- Newsletter, notify-me, ideas and contact forms post to their Netlify forms
+  (`newsletter`, `notify`, `ideas`, `contact`) and are also kept locally.
 - Mobile: designed at 390px first; sticky bottom action bar, full-screen menu,
   thumb-sized buttons, safe-area insets, reduced-motion respected.
 

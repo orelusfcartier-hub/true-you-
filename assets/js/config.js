@@ -37,10 +37,19 @@ window.CONFIG = {
   },
 
   /* Where orders and sign-ups go -------------------------- */
-  // Any of these can stay empty. See README → "Going live".
-  paymentLink: '',        // e.g. a Stripe / Square / PayPal checkout link
-  orderEndpoint: '',      // e.g. https://formspree.io/f/xxxx  (receives JSON)
-  signupEndpoint: '',     // e.g. https://formspree.io/f/yyyy
+  // Hosted on Netlify: orders, newsletter, notify-me, ideas and contact
+  // submissions all land in Netlify → Forms (turn on email notifications
+  // there). Nothing else to set up.
+  netlifyForms: true,
+  // Optional: a Stripe / Square / PayPal checkout link. Customers are sent
+  // there right after placing the order. Leave empty to send payment links
+  // by hand from the order emails.
+  paymentLink: '',
+  // Optional alternatives to Netlify Forms (any URL that accepts JSON).
+  orderEndpoint: '',
+  signupEndpoint: '',
+  // Fallback: if a submission can't be delivered, the visitor gets a
+  // prefilled email to this address.
   orderEmail: 'hello@example.com',
 
   /* Social ------------------------------------------------- */

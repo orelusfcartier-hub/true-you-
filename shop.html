@@ -92,6 +92,29 @@
   <div class="wrap legal">© <span data-year></span> <span data-brand>True You</span>. Sizes XS–3X. Big hair welcome.</div>
 </footer>
 
+<!-- Netlify Forms: these static definitions let Netlify's build bot register the
+     forms. app.js posts to them (see deliver()). Nothing here is visible. -->
+<div hidden aria-hidden="true">
+  <form name="order" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="order"><input name="bot-field">
+    <input name="order-id"><input name="placed-at"><input name="launch-day">
+    <input name="name"><input name="email"><input name="phone"><input name="address"><input name="city"><input name="zip"><input name="country"><input name="note">
+    <textarea name="items"></textarea><input name="promo"><input name="subtotal"><input name="discount"><input name="shipping"><input name="total">
+  </form>
+  <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="newsletter"><input name="bot-field"><input name="email"><input name="list">
+  </form>
+  <form name="notify" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="notify"><input name="bot-field"><input name="email"><input name="product"><input name="list">
+  </form>
+  <form name="ideas" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="ideas"><input name="bot-field"><input name="email"><textarea name="idea"></textarea><input name="list">
+  </form>
+  <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="contact"><input name="bot-field"><input name="name"><input name="email"><textarea name="message"></textarea><input name="list">
+  </form>
+</div>
+
 <nav class="dock" aria-label="Quick actions">
   <a href="shop.html"><span class="ico">🛍️</span>Shop</a>
   <a href="quiz.html"><span class="ico">📼</span>Quiz</a>

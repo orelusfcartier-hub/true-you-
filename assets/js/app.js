@@ -341,6 +341,28 @@
   }
   function closeDrawer() { if (drawer) { drawer.classList.remove('is-open'); document.body.classList.remove('drawer-open'); } }
 
+  /* ---------- delivery: Netlify Forms → JSON endpoint → (caller's fallback) ---------- */
+  // Netlify Forms wants application/x-www-form-urlencoded posted to any path on
+  // the site, with a form-name field matching a form in the static HTML.
+  async function deliver(formName, payload, endpoint) {
+    const flat = {};
+    Object.entries(payload).forEach(([k, v]) => { flat[k] = (v && typeof v === 'object') ? JSON.stringify(v) : String(v ?? ''); });
+    if (C.netlifyForms) {
+      try {
+        const body = new URLSearchParams({ 'form-name': formName, ...flat }).toString();
+        const r = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body });
+        if (r.ok) return true;
+      } catch { /* fall through */ }
+    }
+    if (endpoint) {
+      try {
+        const r = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) });
+        if (r.ok) return true;
+      } catch { /* fall through */ }
+    }
+    return false;
+  }
+
   /* ---------- checkout page ---------- */
   function initCheckout() {
     const page = $('[data-checkout]'); if (!page) return;
@@ -386,13 +408,12 @@
       };
       const orders = store.get('ty-orders', []); orders.push(order); store.set('ty-orders', orders);
 
-      let delivered = false;
-      if (C.orderEndpoint) {
-        try {
-          const r = await fetch(C.orderEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(order) });
-          delivered = r.ok;
-        } catch { delivered = false; }
-      }
+      const itemsText = order.items.map(i => `${i.qty} x ${i.name}${i.color ? ' (' + [i.color, i.size].filter(Boolean).join(', ') + ')' : ''} @ ${money(i.price)}`).join('\n');
+      const delivered = await deliver('order', {
+        'order-id': order.id, 'placed-at': order.placedAt, 'launch-day': order.launchDay ? 'yes' : 'no',
+        name: data.name, email: data.email, phone: data.phone || '', address: data.address, city: data.city, zip: data.zip, country: data.country, note: data.note || '',
+        items: itemsText, promo: order.promo || '', subtotal: money(order.subtotal), discount: money(order.discount), shipping: money(order.shipping), total: money(order.total)
+      }, C.orderEndpoint);
       cart = []; store.set(PROMO_KEY, ''); saveCart();
       showConfirmation(order, delivered);
     });
@@ -410,7 +431,7 @@
     const next = C.paymentLink
       ? `<p>One more step: pay securely and your order is locked in.</p><a class="btn btn--pink btn--block" href="${esc(C.paymentLink)}">Pay ${money(order.total)} →</a>`
       : delivered
-        ? `<p>We got it. A payment link and confirmation are on the way to <strong>${esc(order.customer.email)}</strong>.</p>`
+        ? `<p>We got it. Bella will send a payment link and confirmation to <strong>${esc(order.customer.email)}</strong> shortly. Nothing has been charged yet.</p>`
         : `<p>Send us your order and we'll reply with a payment link. It's already filled in for you.</p><a class="btn btn--pink btn--block" href="${mail}">Send order email →</a>`;
     page.innerHTML = `<div class="panel order-done">
       <div class="big">📼</div>
@@ -529,9 +550,8 @@
   async function signup(payload) {
     store.set('ty-email', payload.email);
     const local = store.get('ty-signups', []); local.push({ ...payload, at: new Date().toISOString() }); store.set('ty-signups', local);
-    if (C.signupEndpoint) {
-      try { await fetch(C.signupEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) }); } catch { /* keep the local copy */ }
-    }
+    const formName = ['newsletter', 'notify', 'ideas', 'contact'].includes(payload.list) ? payload.list : 'newsletter';
+    await deliver(formName, payload, C.signupEndpoint);
     toast(payload.list === 'contact' ? 'Sent! We read every message 💌' : "You're on the list ⚡");
     confetti(60);
   }
