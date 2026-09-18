@@ -1,12 +1,19 @@
 # Marketplace listings
 
-Copy-paste-ready Facebook Marketplace listings for one-off items, one file per item.
-Each file holds the title, price, category, condition, description, and product tags,
-plus a private notes section that is not meant to be posted.
+Everything needed to sell two one-off items on Facebook Marketplace in a single day:
+the listing copy, the buyer message scripts, and the playbook for pricing and
+pickup.
 
-| File | Item | Ask |
-| --- | --- | --- |
-| `pool-cleaner-kreepy-krauly-kruiser.md` | Kreepy Krauly Kruiser pool cleaner + full hose set | $45 |
-| `paint-roller-frame-and-covers.md` | Paint roller frame + new roller cover(s) | $5 |
+| File | What it holds |
+| --- | --- |
+| `pool-cleaner-kreepy-krauly-kruiser.md` | Listing — Kreepy Krauly Kruiser cleaner + full hose set, $45 |
+| `paint-roller-frame-and-covers.md` | Listing — paint roller frame + new roller cover(s), $5 |
+| `buyer-replies.md` | Paste-ready replies: still available, address drop, lowballs, holds, no-shows |
+| `sell-today-playbook.md` | Price ladder by hour, photo order, group shares, safety, scam filter |
 
-Pickup is Cold Springs; the exact address goes to the buyer directly, not into the listing.
+Each listing file separates the fields Marketplace's form asks for (title, price,
+category, condition, location) from the description body, and ends with a private
+notes section that is not meant to be posted.
+
+Pickup is Cold Springs. The exact street address stays out of every listing and goes
+to a buyer only once they are on their way.
